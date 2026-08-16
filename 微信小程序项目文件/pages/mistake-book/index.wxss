@@ -1,0 +1,225 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 80rpx var(--space-5) var(--space-5) var(--space-5);
+  box-sizing: border-box;
+}
+
+.top-nav {
+  margin-bottom: var(--space-3);
+  flex-shrink: 0;
+}
+
+.back-btn {
+  font-size: var(--font-caption);
+  color: var(--color-seal);
+  font-weight: bold;
+}
+
+.header {
+  margin-bottom: var(--space-4);
+  flex-shrink: 0;
+}
+
+.page-title {
+  font-size: var(--font-page-title);
+}
+
+.page-sub {
+  font-size: var(--font-micro);
+  color: var(--color-ash);
+}
+
+/* 统计卡片 */
+.stats-bar {
+  margin-bottom: var(--space-4);
+  flex-shrink: 0;
+}
+
+.stats-box {
+  flex: 1;
+}
+
+.stats-val {
+  font-size: var(--font-data-md);
+  line-height: 1.2;
+  margin-bottom: var(--space-1);
+}
+
+.stats-lbl {
+  font-size: var(--font-micro);
+}
+
+.mistake-scroll {
+  flex: 1;
+  overflow: hidden;
+}
+
+.mistake-list {
+  gap: var(--space-3);
+  padding-bottom: var(--space-5);
+}
+
+/* 错题卡片 */
+.mistake-card {
+  background-color: var(--color-card);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  border: 1rpx solid var(--color-border-light);
+  box-shadow: var(--shadow-card);
+}
+
+.card-header {
+  margin-bottom: var(--space-2);
+}
+
+.wrong-count {
+  font-size: var(--font-micro);
+  color: var(--color-warning);
+  margin-left: var(--space-2);
+}
+
+.question-title {
+  font-size: var(--font-body);
+  line-height: 1.6;
+  color: var(--color-ink);
+  margin-bottom: var(--space-3);
+}
+
+/* AI 诊断详情 */
+.ai-analysis-box {
+  background-color: var(--color-indigo-soft);
+  border-left: 6rpx solid var(--color-indigo);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.analysis-tag {
+  margin-bottom: var(--space-2);
+}
+
+.analysis-tag-icon {
+  font-size: var(--font-caption);
+  margin-right: var(--space-1);
+  color: var(--color-indigo);
+  font-weight: bold;
+}
+
+.analysis-tag-text {
+  font-size: var(--font-micro);
+  color: var(--color-indigo);
+  font-weight: bold;
+}
+
+.analysis-body {
+  font-size: var(--font-caption);
+  color: var(--color-ink);
+  line-height: 1.6;
+  margin-bottom: var(--space-2);
+}
+
+.analysis-concept {
+  font-size: var(--font-micro);
+  color: var(--color-indigo);
+  font-weight: 500;
+}
+
+/* 操作按钮 */
+.card-actions {
+  gap: var(--space-2);
+}
+
+/* 自测弹窗 */
+.test-modal-body {
+  margin-bottom: var(--space-4);
+}
+
+.test-question {
+  font-size: var(--font-body);
+  line-height: 1.6;
+  color: var(--color-ink);
+  margin-bottom: var(--space-4);
+}
+
+.test-option {
+  background-color: var(--color-card);
+  border: 1rpx solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-3);
+  margin-bottom: var(--space-2);
+  transition: all 0.3s ease;
+}
+
+.option-key {
+  width: 44rpx;
+  height: 44rpx;
+  border-radius: 50%;
+  border: 1rpx solid var(--color-border);
+  font-size: var(--font-caption);
+  margin-right: var(--space-3);
+  color: var(--color-ash);
+  flex-shrink: 0;
+}
+
+.option-text {
+  font-size: var(--font-caption);
+  color: var(--color-ash);
+}
+
+/* 选项状态 */
+.test-option.correct {
+  background-color: var(--color-bamboo-soft);
+  border-color: var(--color-bamboo);
+}
+
+.test-option.correct .option-key {
+  background-color: var(--color-bamboo);
+  color: #fff;
+  border-color: var(--color-bamboo);
+}
+
+.test-option.correct .option-text {
+  color: var(--color-bamboo);
+  font-weight: bold;
+}
+
+.test-option.wrong {
+  background-color: var(--color-seal-soft);
+  border-color: var(--color-seal);
+}
+
+.test-option.wrong .option-key {
+  background-color: var(--color-seal);
+  color: #fff;
+  border-color: var(--color-seal);
+}
+
+.test-option.wrong .option-text {
+  color: var(--color-seal);
+  font-weight: bold;
+}
+
+.test-feedback-box {
+  background-color: var(--color-border-light);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-4);
+}
+
+.feedback-title {
+  font-size: var(--font-caption);
+  font-weight: bold;
+  margin-bottom: var(--space-1);
+}
+
+.feedback-analysis {
+  font-size: var(--font-micro);
+  color: var(--color-ash);
+  line-height: 1.5;
+}
+
+.test-modal-btn {
+  width: 100%;
+}

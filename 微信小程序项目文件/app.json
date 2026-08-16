@@ -1,0 +1,48 @@
+{
+  "pages": [
+    "pages/splash/index",
+    "pages/login/index",
+    "pages/home/index",
+    "pages/course/index",
+    "pages/chat/index",
+    "pages/profile/index",
+    "pages/forum-detail/index",
+    "pages/mistake-book/index",
+    "pages/knowledge-base/index",
+    "pages/journal/index",
+    "pages/journal-detail/index",
+    "pages/portrait/index",
+    "pages/knowledge-map/index",
+    "pages/homework/index",
+    "pages/homework-detail/index",
+    "pages/evaluator/index",
+    "pages/evaluator-detail/index",
+    "pages/evaluator-result/index"
+  ],
+  "window": {
+    "navigationStyle": "custom",
+    "backgroundColor": "#F7F7F8"
+  },
+  "tabBar": {
+    "custom": true,
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/course/index",
+        "text": "学术空间"
+      },
+      {
+        "pagePath": "pages/chat/index",
+        "text": "AI导师"
+      },
+      {
+        "pagePath": "pages/profile/index",
+        "text": "我的"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

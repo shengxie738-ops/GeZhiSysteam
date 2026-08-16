@@ -1,0 +1,72 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 72rpx var(--space-5) 56rpx;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  gap: 64rpx;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0;
+}
+
+.logo {
+  width: 132rpx;
+  height: 132rpx;
+  margin-bottom: var(--space-4);
+}
+
+.hero-text {
+  text-align: center;
+  margin-bottom: var(--space-3);
+}
+
+.title {
+  font-size: 60rpx;
+  color: var(--color-ink);
+  letter-spacing: 10rpx;
+}
+
+.desc-box {
+  width: 100%;
+  margin-top: var(--space-3);
+}
+
+.desc-line {
+  width: 80rpx;
+  height: 1rpx;
+  background-color: var(--color-border);
+  margin: 0 var(--space-3);
+}
+
+.desc {
+  font-size: var(--font-caption);
+  color: var(--color-ash);
+  letter-spacing: 6rpx;
+}
+
+.action-area {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.enter-btn {
+  background-color: var(--color-dark);
+  color: #fff;
+  font-size: var(--font-section-title);
+  width: 85% !important;
+  height: 88rpx;
+  line-height: 88rpx;
+  border-radius: var(--radius-pill);
+  letter-spacing: 16rpx;
+  box-shadow: var(--shadow-card-lg);
+  border: none;
+}

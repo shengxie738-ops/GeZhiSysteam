@@ -1,0 +1,96 @@
+<view class="container">
+  <view class="wave-bg"></view>
+
+  <view class="user-header flex-row align-center">
+    <image class="avatar" src="{{user.avatar_url || '/logo/logo1.png'}}" mode="aspectFill" bindtap="uploadAvatar"></image>
+    <view class="user-info flex-col">
+      <text class="user-name serif-text">{{user.real_name || user.username || '同学'}}</text>
+      <text class="user-id">学号: {{user.student_id || '未知'}} | 班级: {{user.class_name || '未加入'}}</text>
+      <view class="tag tag-seal level-tag">{{levelText || '初学'}}</view>
+    </view>
+  </view>
+
+  <!-- 统计卡片 -->
+  <view class="card stats-card flex-row align-center justify-between">
+    <view class="stat-item flex-col align-center">
+      <view class="stat-top flex-row align-baseline">
+        <text class="stat-num serif-text">{{profile.pace || 50}}</text>
+        <text class="stat-unit">学分</text>
+      </view>
+      <text class="stat-label">研学指数</text>
+    </view>
+    
+    <view class="divider"></view>
+    
+    <view class="stat-item flex-col align-center">
+      <view class="stat-top flex-row align-baseline">
+        <text class="stat-num serif-text">{{mistakeCount || 0}}</text>
+        <text class="stat-unit">道</text>
+      </view>
+      <text class="stat-label">录入错题</text>
+    </view>
+    
+    <view class="divider"></view>
+    
+    <view class="stat-item flex-col align-center">
+      <view class="stat-top flex-row align-baseline">
+        <text class="stat-num serif-text">{{levelText}}</text>
+        <text class="stat-unit"></text>
+      </view>
+      <text class="stat-label">格物境界</text>
+    </view>
+  </view>
+
+  <!-- 学习档案 -->
+  <view class="card archive-card flex-col">
+    <text class="archive-title serif-text">学习档案</text>
+    <view class="archive-placeholder flex-row align-center justify-center">
+      <text class="archive-hint">持续学习，记录成长轨迹</text>
+    </view>
+  </view>
+
+  <!-- 菜单列表 -->
+  <view class="menu-list flex-col">
+    <view class="card menu-item flex-row align-center" bindtap="navToJournal">
+      <text class="menu-icon" style="color:var(--color-seal)">◇</text>
+      <text class="menu-text">我的学习学纪</text>
+      <text class="menu-arrow">›</text>
+    </view>
+    <view class="card menu-item flex-row align-center" bindtap="navToPortrait">
+      <text class="menu-icon" style="color:var(--color-seal)">◈</text>
+      <text class="menu-text">学情画像详情</text>
+      <text class="menu-arrow">›</text>
+    </view>
+    <view class="card menu-item flex-row align-center" bindtap="navToHomework">
+      <text class="menu-icon" style="color:var(--color-seal)">▣</text>
+      <text class="menu-text">我的作业任务</text>
+      <text class="menu-arrow">›</text>
+    </view>
+    <view class="card menu-item flex-row align-center" bindtap="navToKnowledge">
+      <text class="menu-icon" style="color:var(--color-seal)">▸</text>
+      <text class="menu-text">我的专属课件库</text>
+      <text class="menu-arrow">›</text>
+    </view>
+    <view class="card menu-item flex-row align-center" bindtap="navToMistakes">
+      <text class="menu-icon" style="color:var(--color-seal)">✎</text>
+      <text class="menu-text">我的错题随学特训</text>
+      <text class="menu-arrow">›</text>
+    </view>
+    <view class="card menu-item flex-row align-center" bindtap="navToChat">
+      <text class="menu-icon" style="color:var(--color-seal)">◎</text>
+      <text class="menu-text">与 AI 导师对话</text>
+      <text class="menu-arrow">›</text>
+    </view>
+    <view class="card menu-item flex-row align-center" bindtap="navToEvaluator">
+      <text class="menu-icon" style="color:var(--color-seal)">◆</text>
+      <text class="menu-text">测评中心</text>
+      <text class="menu-arrow">›</text>
+    </view>
+  </view>
+
+  <!-- 退出登录 -->
+  <view class="logout-btn flex-row align-center justify-center" bindtap="handleLogout">
+    <text class="logout-icon">←</text>
+    <text class="logout-text">退出登录</text>
+  </view>
+</view>

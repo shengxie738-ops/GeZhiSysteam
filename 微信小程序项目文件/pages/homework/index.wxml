@@ -1,0 +1,46 @@
+<view class="container">
+  <view class="wave-bg"></view>
+
+  <view class="top-nav flex-row align-center">
+    <text class="back-btn" bindtap="goBack">← 返回</text>
+  </view>
+
+  <view class="header">
+    <text class="page-title serif-text">作业任务</text>
+    <text class="page-sub">按时完成 Checkpoint，稳住学习节奏</text>
+  </view>
+
+  <view class="empty-state" wx:if="{{loading}}">
+    <text class="empty-state-icon">◎</text>
+    <text class="empty-state-text">正在加载作业...</text>
+  </view>
+
+  <view class="empty-state" wx:elif="{{error}}">
+    <text class="empty-state-icon">✗</text>
+    <text class="empty-state-text">加载失败，请稍后重试</text>
+    <button class="btn btn-sm btn-ghost" style="margin-top: 24rpx;" bindtap="onRetryTap">重新加载</button>
+  </view>
+
+  <view class="homework-list" wx:elif="{{homeworkList.length > 0}}">
+    <view class="card homework-card" wx:for="{{homeworkList}}" wx:key="id" bindtap="viewDetail" data-id="{{item.id}}">
+      <view class="homework-card-head flex-row align-start justify-between">
+        <text class="homework-title serif-text">{{item.title}}</text>
+        <view class="tag {{item.statusClass}}">{{item.statusText}}</view>
+      </view>
+      <text class="homework-desc">{{item.knowledgePoint || item.description || '暂无知识点说明'}}</text>
+      <view class="homework-meta flex-row align-center justify-between">
+        <text>{{item.subjectName}}</text>
+        <text>{{item.questionCount}} 题</text>
+      </view>
+      <view class="deadline-row flex-row align-center justify-between">
+        <text class="deadline-label">截止时间</text>
+        <text class="deadline-value">{{item.deadline || '未设置'}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty-state" wx:else>
+    <text class="empty-state-icon">✓</text>
+    <text class="empty-state-text">暂无作业任务</text>
+  </view>
+</view>

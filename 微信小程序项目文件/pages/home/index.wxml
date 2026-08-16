@@ -1,0 +1,202 @@
+<view class="container">
+  <view class="wave-bg"></view>
+
+  <!-- 顶部导航 -->
+  <view class="top-nav flex-row align-center justify-between">
+    <text class="greeting-sub">{{greetingText || '穷理致知 · 伴学相长'}}</text>
+    <view class="bell-icon flex-row align-center justify-center" bindtap="showNudges">
+      <view class="red-dot" wx:if="{{hasNewNudge}}"></view>
+      <view class="bell-dot"></view>
+    </view>
+  </view>
+
+  <view class="header flex-row align-center justify-between">
+    <text class="page-title serif-text">问学，同学</text>
+    <text class="user-display">{{usernameDisplay}}</text>
+  </view>
+
+  <!-- 学业案卷 · 知识掌握度核心卡片 -->
+  <view class="study-card flex-col justify-between" bindtap="goToProfileDetail">
+    <view class="card-tag flex-row align-center justify-between">
+      <view class="flex-row align-center">
+        <text class="tag tag-seal">知识掌握度</text>
+      </view>
+      <text class="tag tag-dark">认知: {{profile.cognitive || '渐进理解型'}}</text>
+    </view>
+    <view class="study-card-body flex-row align-center justify-between">
+      <view class="days-box flex-row align-start">
+        <text class="days-num serif-text">{{profile.knowledge || 50}}</text>
+        <text class="days-unit">分</text>
+      </view>
+      <view class="study-card-meta flex-col align-end">
+        <text class="meta-label">学业案卷</text>
+        <text class="meta-line">·</text>
+      </view>
+    </view>
+    <text class="card-quote">目标: {{profile.goal || '掌握核心数据结构与算法'}}</text>
+  </view>
+
+  <!-- 竹简分隔线 -->
+  <view class="bamboo-divider">
+    <view class="bamboo-divider-dot"></view>
+  </view>
+
+  <!-- 学业能力分析 -->
+  <view class="section flex-row align-center justify-between">
+    <text class="section-title serif-text">学业能力分析</text>
+    <text class="section-more" bindtap="refreshProfile">同步更新 ↻</text>
+  </view>
+
+  <view class="analysis-list">
+    <!-- 掌握进度 -->
+    <view class="analysis-card card flex-row align-center">
+      <view class="progress-circle progress-seal flex-row align-center justify-center">
+        <text class="progress-num">{{profile.knowledge || 50}}%</text>
+      </view>
+      <view class="analysis-info flex-col">
+        <text class="tag tag-seal">掌握进度</text>
+        <text class="analysis-title serif-text">课程核心知识掌握度</text>
+        <text class="analysis-desc">基于习题通过率与自测得分评估</text>
+      </view>
+    </view>
+
+    <!-- 研学活力 -->
+    <view class="analysis-card card flex-row align-center">
+      <view class="progress-circle progress-indigo flex-row align-center justify-center">
+        <text class="progress-num">{{profile.pace || 50}}%</text>
+      </view>
+      <view class="analysis-info flex-col">
+        <text class="tag tag-indigo">研学活力</text>
+        <text class="analysis-title serif-text">学习节奏与活跃指数</text>
+        <text class="analysis-desc">基于平台互动行为与打卡情况统计</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 竹简分隔线 -->
+  <view class="bamboo-divider">
+    <view class="bamboo-divider-dot"></view>
+  </view>
+
+  <!-- 常用功能 -->
+  <view class="section flex-row align-center justify-between">
+    <text class="section-title serif-text">常用功能</text>
+  </view>
+
+  <view class="grid-menu compact-menu flex-row">
+    <view class="menu-item flex-col align-center" bindtap="navToMistakes">
+      <view class="icon-box icon-box-lg">
+        <text class="menu-icon-char">✎</text>
+      </view>
+      <text class="menu-text">错题特训</text>
+    </view>
+    <view class="menu-item flex-col align-center" bindtap="navToJournal">
+      <view class="icon-box icon-box-lg">
+        <text class="menu-icon-char">◇</text>
+      </view>
+      <text class="menu-text">学习学纪</text>
+    </view>
+    <view class="menu-item flex-col align-center" bindtap="navToPortrait">
+      <view class="icon-box icon-box-lg">
+        <text class="menu-icon-char">◈</text>
+      </view>
+      <text class="menu-text">学情画像</text>
+    </view>
+    <view class="menu-item flex-col align-center" bindtap="navToEvaluator">
+      <view class="icon-box icon-box-lg">
+        <text class="menu-icon-char">◆</text>
+      </view>
+      <text class="menu-text">测评中心</text>
+    </view>
+  </view>
+
+  <!-- 作业任务摘要 -->
+  <view class="bamboo-divider">
+    <view class="bamboo-divider-dot"></view>
+  </view>
+  <view class="section flex-row align-center justify-between">
+    <text class="section-title serif-text">作业任务</text>
+    <text class="section-more" bindtap="navToHomework">查看全部 ›</text>
+  </view>
+  <view class="homework-summary card">
+    <view class="homework-counts flex-row align-center justify-between">
+      <view class="homework-count flex-col">
+        <text class="homework-count-num serif-text">{{dashboard.pendingCount || 0}}</text>
+        <text class="homework-count-label">待提交</text>
+      </view>
+      <view class="homework-count flex-col">
+        <text class="homework-count-num serif-text">{{dashboard.submittedCount || 0}}</text>
+        <text class="homework-count-label">已提交</text>
+      </view>
+    </view>
+    <view class="homework-mini-list" wx:if="{{dashboard.homeworkList.length > 0}}">
+      <view class="homework-mini-item flex-row align-center justify-between" wx:for="{{dashboard.homeworkList}}" wx:key="id" bindtap="navToHomework">
+        <view class="homework-mini-main flex-col">
+          <text class="homework-mini-title">{{item.title}}</text>
+          <text class="homework-mini-meta">{{item.subjectName}} · {{item.deadline || '暂无截止时间'}}</text>
+        </view>
+        <view class="tag {{item.statusText === '已提交' ? 'tag-bamboo' : 'tag-warning'}}">{{item.statusText}}</view>
+      </view>
+    </view>
+    <view class="empty-state empty-state-sm" wx:else>
+      <text class="empty-state-text">暂无作业任务</text>
+    </view>
+  </view>
+
+  <!-- 最近学纪 -->
+  <block wx:if="{{recentEvents.length > 0}}">
+    <view class="bamboo-divider">
+      <view class="bamboo-divider-dot"></view>
+    </view>
+    <view class="section flex-row align-center justify-between">
+      <text class="section-title serif-text">最近学纪</text>
+      <text class="section-more" bindtap="navToJournal">查看全部 ›</text>
+    </view>
+    <view class="journal-list">
+      <view class="journal-card card flex-row align-center"
+            wx:for="{{recentEvents}}" wx:key="id"
+            bindtap="onEventTap"
+            data-id="{{item.id}}"
+            data-type="{{item.type}}"
+            data-related="{{item.relatedIds[0]}}">
+        <view class="journal-icon flex-row align-center justify-center">
+          <text wx:if="{{item.type === 'chat' || item.type === 'rag'}}">◎</text>
+          <text wx:elif="{{item.type === 'mistake'}}">✎</text>
+          <text wx:elif="{{item.type === 'quiz'}}">◈</text>
+          <text wx:elif="{{item.type === 'knowledge_upload'}}">▸</text>
+          <text wx:else>◇</text>
+        </view>
+        <view class="journal-info flex-col flex-1">
+          <text class="journal-title">{{item.title}}</text>
+          <text class="journal-summary" wx:if="{{item.summary}}">{{item.summary}}</text>
+          <text class="journal-time">{{item.createdAt}}</text>
+        </view>
+        <text class="journal-delta" wx:if="{{item.scoreDelta > 0}}">+{{item.scoreDelta}}</text>
+        <text class="journal-delta journal-delta-neg" wx:elif="{{item.scoreDelta < 0}}">{{item.scoreDelta}}</text>
+      </view>
+    </view>
+  </block>
+
+  <!-- Nudge 干预提醒 Modal 弹窗 -->
+  <view class="modal-mask flex-row align-center justify-center" wx:if="{{showNudgeModal}}" bindtap="closeNudgeModal">
+    <view class="modal-content flex-col" catchtap="preventBubble">
+      <view class="modal-header flex-row align-center justify-between">
+        <text class="modal-title serif-text">师长寄语 / 学情提醒</text>
+        <text class="modal-close" bindtap="closeNudgeModal">×</text>
+      </view>
+      <view class="nudge-modal-body">
+        <view class="nudge-item flex-col" wx:for="{{nudges}}" wx:key="id">
+          <view class="nudge-item-meta flex-row align-center justify-between">
+            <text class="nudge-sender">来自: 教师系统干预</text>
+            <text class="nudge-time">{{item.createdAt || '今日'}}</text>
+          </view>
+          <text class="nudge-msg">{{item.message || '请合理安排时间，及时完成学习任务哦。'}}</text>
+        </view>
+        <view class="nudge-empty" wx:if="{{nudges.length === 0}}">
+          <text>暂无新的学情提醒。日拱一卒，继续保持！</text>
+        </view>
+      </view>
+      <button class="nudge-modal-btn serif-text" bindtap="closeNudgeModal">格物致知</button>
+    </view>
+  </view>
+</view>

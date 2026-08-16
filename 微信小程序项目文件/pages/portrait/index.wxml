@@ -1,0 +1,136 @@
+<!-- pages/portrait/index.wxml -->
+<view class="page-container">
+
+  <!-- Loading -->
+  <view wx:if="{{loading}}" class="loading-wrap">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">正在加载学情画像…</text>
+  </view>
+
+  <!-- Error -->
+  <view wx:elif="{{error}}" class="error-wrap">
+    <text class="empty-state-icon">⊙</text>
+    <text class="empty-state-text">加载失败，请稍后重试</text>
+    <view class="btn btn-ghost btn-sm" style="margin-top:32rpx" bindtap="onRetryTap">重新加载</view>
+  </view>
+
+  <!-- Main content -->
+  <block wx:else>
+
+    <!-- 1. Ability Summary Card -->
+    <view class="profile-card" wx:if="{{abilityProfile}}">
+      <view class="profile-score-row">
+        <view class="profile-score-main">
+          <text class="profile-score-label">能力协同六维图谱</text>
+          <text class="profile-score-value serif-text">{{abilityProfile.progress || '--'}}</text>
+        </view>
+        <view class="profile-meta">
+          <view class="profile-meta-item">
+            <text class="profile-meta-label">专注度</text>
+            <text class="profile-meta-value">{{abilityProfile.focus || '--'}}</text>
+          </view>
+          <view class="profile-meta-item">
+            <text class="profile-meta-label">AI 导师</text>
+            <text class="profile-meta-value">{{abilityProfile.agentName || '--'}}</text>
+          </view>
+          <view class="profile-meta-item">
+            <text class="profile-meta-label">学习目标</text>
+            <text class="profile-meta-value">{{abilityProfile.goal || '--'}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="profile-bottom">
+        <view class="tag tag-seal">本人学情</view>
+        <text class="profile-time">对照全班均值</text>
+      </view>
+    </view>
+
+    <!-- Bamboo divider -->
+    <view class="bamboo-divider"><view class="bamboo-divider-dot"></view></view>
+
+    <!-- 2. Six Dimension Cards -->
+    <view class="section">
+      <text class="section-title">六维能力明细</text>
+      <view wx:if="{{dimensions.length > 0}}">
+        <view class="card dimension-card" wx:for="{{dimensions}}" wx:key="id">
+          <view class="dimension-header">
+            <text class="dimension-name">{{item.name}}</text>
+            <view class="tag {{item.statusClass}}">{{item.statusText}}</view>
+          </view>
+          <view class="dimension-score-row">
+            <view class="dimension-score-main">
+              <text class="dimension-score serif-text">{{item.score}}</text>
+              <text class="dimension-unit">分</text>
+            </view>
+            <text class="dimension-class">班级均值 {{item.classScore}}</text>
+          </view>
+          <view class="dual-bar">
+            <view class="dual-bar-track">
+              <view class="dual-bar-fill self-fill" style="width: {{item.score}}%"></view>
+            </view>
+            <view class="dual-bar-track">
+              <view class="dual-bar-fill class-fill" style="width: {{item.classScore}}%"></view>
+            </view>
+          </view>
+          <view class="dimension-evidence">
+            <text>{{item.label}}</text>
+            <text wx:if="{{item.sampleCount}}"> · 样本 {{item.sampleCount}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="empty-state" wx:else>
+        <text class="empty-state-icon">▫</text>
+        <text class="empty-state-text">暂无六维能力数据</text>
+      </view>
+    </view>
+
+    <!-- Bamboo divider -->
+    <view class="bamboo-divider"><view class="bamboo-divider-dot"></view></view>
+
+    <!-- 3. Learning Trends -->
+    <view class="section">
+      <view class="section-header">
+        <text class="section-title">学习趋势</text>
+        <view class="range-toggle">
+          <view class="range-btn {{trendRange === '7d' ? 'range-active' : ''}}" data-range="7d" bindtap="onRangeTap">7天</view>
+          <view class="range-btn {{trendRange === '30d' ? 'range-active' : ''}}" data-range="30d" bindtap="onRangeTap">30天</view>
+        </view>
+      </view>
+      <view class="card trend-card" wx:if="{{trends.length > 0}}">
+        <view class="trend-bars">
+          <view class="trend-bar-item" wx:for="{{trends}}" wx:key="date" wx:if="{{index < 7}}">
+            <view class="trend-bar-track">
+              <view class="trend-bar-fill" style="height: {{item.value}}%"></view>
+            </view>
+            <text class="trend-bar-value">{{item.value}}</text>
+            <text class="trend-bar-date">{{item.date}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="empty-state" wx:else>
+        <text class="empty-state-icon">▫</text>
+        <text class="empty-state-text">暂无趋势数据</text>
+      </view>
+    </view>
+
+    <!-- 4. Suggestions -->
+    <view class="section">
+      <text class="section-title">下一步建议</text>
+      <view class="suggestion-list">
+        <view class="card suggestion-card" bindtap="goToHomework">
+          <text class="suggestion-icon">▣</text>
+          <text class="suggestion-label">查看作业任务，优先补齐 Checkpoint 完成率</text>
+          <text class="suggestion-arrow">▸</text>
+        </view>
+        <view class="card suggestion-card" bindtap="goToChat">
+          <text class="suggestion-icon">◎</text>
+          <text class="suggestion-label">向 AI 导师询问低分维度的提升路径</text>
+          <text class="suggestion-arrow">▸</text>
+        </view>
+      </view>
+    </view>
+
+  </block>
+
+  <view class="wave-bg"></view>
+</view>

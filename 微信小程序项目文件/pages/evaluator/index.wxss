@@ -1,0 +1,75 @@
+.container {
+  padding: 100rpx var(--space-4) 180rpx var(--space-4);
+  position: relative;
+}
+
+.header {
+  margin-bottom: var(--space-4);
+}
+
+.page-title {
+  font-size: var(--font-page-title);
+  letter-spacing: 4rpx;
+}
+
+.page-sub {
+  font-size: var(--font-micro);
+  color: var(--color-ash);
+}
+
+/* 筛选条 */
+.filter-scroll {
+  white-space: nowrap;
+  margin-bottom: var(--space-3);
+}
+
+.filter-bar {
+  display: inline-flex;
+  gap: var(--space-2);
+  padding: var(--space-1) 0;
+}
+
+/* 测评列表 */
+.quiz-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.quiz-card {
+  padding: var(--space-4);
+}
+
+.quiz-title {
+  font-size: var(--font-card-title);
+  margin-bottom: var(--space-2);
+  line-height: 1.5;
+}
+
+.quiz-tags {
+  gap: var(--space-1);
+  margin-bottom: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.quiz-meta {
+  margin-bottom: var(--space-3);
+}
+
+.quiz-stars {
+  gap: 4rpx;
+}
+
+.star {
+  font-size: var(--font-caption);
+}
+
+.quiz-info {
+  font-size: var(--font-caption);
+  color: var(--color-ash);
+}
+
+.quiz-actions {
+  margin-top: var(--space-1);
+}

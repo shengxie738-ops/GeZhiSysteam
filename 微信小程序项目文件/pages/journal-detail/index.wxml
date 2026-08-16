@@ -1,0 +1,85 @@
+<view class="container">
+  <view class="wave-bg"></view>
+
+  <!-- 加载中 -->
+  <view class="loading-state" wx:if="{{loading}}">
+    <text class="loading-text">学纪详情加载中…</text>
+  </view>
+
+  <!-- 错误状态 -->
+  <view class="empty-state" wx:elif="{{error}}">
+    <text class="empty-state-icon">!</text>
+    <text class="empty-state-text">未能找到该学纪记录</text>
+    <button class="btn btn-ghost btn-sm" style="margin-top: 32rpx;" bindtap="goBack">返回</button>
+  </view>
+
+  <!-- 详情内容 -->
+  <view class="detail-view" wx:elif="{{event}}">
+    <!-- 类型徽章 -->
+    <view class="detail-badge flex-row align-center">
+      <text class="tag tag-seal" wx:if="{{event.type === 'chat'}}">AI问答</text>
+      <text class="tag tag-indigo" wx:elif="{{event.type === 'rag'}}">知识检索</text>
+      <text class="tag tag-seal" wx:elif="{{event.type === 'mistake'}}">错题训练</text>
+      <text class="tag tag-bamboo" wx:elif="{{event.type === 'quiz'}}">测评</text>
+      <text class="tag tag-warning" wx:elif="{{event.type === 'knowledge_upload'}}">资料上传</text>
+      <text class="tag tag-dark" wx:elif="{{event.type === 'forum'}}">论坛</text>
+      <text class="tag tag-dark" wx:else>{{event.type}}</text>
+    </view>
+
+    <!-- 主卡片 -->
+    <view class="card-lg detail-card">
+      <!-- 标题 -->
+      <text class="detail-title serif-text">{{event.title}}</text>
+
+      <!-- 竹简分隔线 -->
+      <view class="bamboo-divider">
+        <view class="bamboo-divider-dot"></view>
+      </view>
+
+      <!-- 内容/摘要 -->
+      <view class="detail-content" wx:if="{{event.summary}}">
+        <text class="detail-summary">{{event.summary}}</text>
+      </view>
+
+      <!-- 标签列表 -->
+      <view class="detail-tags flex-row" wx:if="{{event.tags && event.tags.length > 0}}">
+        <text class="tag tag-dark" wx:for="{{event.tags}}" wx:key="*this">{{item}}</text>
+      </view>
+
+      <!-- 积分变化 -->
+      <view class="detail-score" wx:if="{{event.scoreDelta}}">
+        <text class="detail-score-label">积分变动</text>
+        <text class="detail-score-value {{event.scoreDelta > 0 ? 'score-positive' : 'score-negative'}}">
+          {{event.scoreDelta > 0 ? '+' : ''}}{{event.scoreDelta}}
+        </text>
+      </view>
+
+      <!-- 竹简分隔线 -->
+      <view class="bamboo-divider">
+        <view class="bamboo-divider-dot"></view>
+      </view>
+
+      <!-- 时间信息 -->
+      <view class="detail-info flex-row align-center justify-between">
+        <text class="detail-time">记录时间：{{event.createdAt}}</text>
+      </view>
+
+      <!-- 关联操作按钮 -->
+      <view class="detail-action" wx:if="{{event.type === 'chat' || event.type === 'rag' || event.type === 'mistake' || event.type === 'quiz'}}">
+        <button class="btn btn-primary btn-sm"
+          data-type="{{event.type}}"
+          data-related="{{event.relatedIds}}"
+          bindtap="goToRelated">
+          <text wx:if="{{event.type === 'chat' || event.type === 'rag'}}">查看对话</text>
+          <text wx:elif="{{event.type === 'mistake'}}">查看错题</text>
+          <text wx:elif="{{event.type === 'quiz'}}">查看测评结果</text>
+        </button>
+      </view>
+    </view>
+
+    <!-- 底部返回 -->
+    <view class="detail-bottom">
+      <button class="btn btn-secondary" bindtap="goBack">返回学纪列表</button>
+    </view>
+  </view>
+</view>

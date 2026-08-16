@@ -1,0 +1,88 @@
+<view class="container">
+  <view class="wave-bg"></view>
+
+  <!-- 顶部导航 -->
+  <view class="top-nav flex-row align-center">
+    <text class="back-btn" bindtap="goBack">← 返回个人中心</text>
+  </view>
+
+  <view class="header flex-row align-center justify-between">
+    <view class="title-area flex-col">
+      <text class="page-title serif-text">专属课件库</text>
+      <text class="page-sub">知识检索，有本可依</text>
+    </view>
+    <button class="btn btn-xs btn-ghost serif-text" bindtap="showCreateFolder">新建分类</button>
+  </view>
+
+  <!-- 文件夹分类 Tab 滚动条 -->
+  <scroll-view scroll-x class="folder-scroll" show-scrollbar="false">
+    <view class="folder-bar flex-row align-center">
+      <view 
+        class="tag folder-item {{activeRepoId === item.id ? 'active' : ''}}" 
+        wx:for="{{repositories}}" 
+        wx:key="id"
+        bindtap="switchRepository"
+        data-id="{{item.id}}"
+      >
+        ▸ {{item.name}}
+      </view>
+    </view>
+  </scroll-view>
+
+  <scroll-view scroll-y class="doc-scroll">
+    <!-- 文档列表 -->
+    <view class="doc-list flex-col">
+      <view class="doc-card flex-row align-center justify-between" wx:for="{{documents}}" wx:key="id">
+        <view class="doc-info flex-row align-center">
+          <view class="doc-icon flex-row align-center justify-center">▫</view>
+          <view class="doc-text flex-col">
+            <text class="doc-name">{{item.name || '未命名文档'}}</text>
+            <view class="doc-meta flex-row align-center">
+              <text class="doc-size">{{item.sizeKb || '0'}} KB</text>
+              <text class="meta-dot">·</text>
+              <view class="tag {{item.status === 'success' ? 'tag-bamboo' : 'tag-warning'}}">
+                {{item.status === 'success' ? '向量化就绪' : '解析中'}}
+              </view>
+            </view>
+          </view>
+        </view>
+        
+        <!-- 删除按钮 -->
+        <view class="delete-btn flex-row align-center justify-center" bindtap="deleteDocument" data-id="{{item.id}}" data-name="{{item.name}}">
+          <text>×</text>
+        </view>
+      </view>
+
+      <!-- 空白占位 -->
+      <view class="empty-state" wx:if="{{documents.length === 0}}">
+        <text class="empty-state-icon">📂</text>
+        <text class="empty-state-text">当前分类下无课件文件</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 底部固定文件上传 -->
+  <view class="footer-bar flex-row justify-center">
+    <button class="btn btn-primary serif-text upload-doc-btn" bindtap="uploadDocument">
+      ↑ 上传微信聊天文件进行向量化
+    </button>
+  </view>
+
+  <!-- 新建分类 Dialog 弹窗 -->
+  <view class="modal-mask" wx:if="{{showFolderDialog}}" bindtap="closeCreateFolder">
+    <view class="modal-content flex-col" catchtap="preventBubble">
+      <text class="modal-title serif-text">▸ 新建知识库分类</text>
+      <input 
+        class="dialog-input" 
+        placeholder="输入分类名称（例如: 高等数学）" 
+        placeholder-class="ph-style"
+        value="{{newFolderName}}"
+        bindinput="onFolderNameInput"
+      />
+      <view class="dialog-actions flex-row justify-end">
+        <button class="btn btn-xs btn-secondary" bindtap="closeCreateFolder">取消</button>
+        <button class="btn btn-xs btn-primary" bindtap="submitCreateFolder" disabled="{{!newFolderName.length}}">确认新建</button>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,120 @@
+.container {
+  padding: 100rpx var(--space-5) 180rpx var(--space-5);
+  position: relative;
+}
+
+.header {
+  margin-bottom: var(--space-5);
+  display: flex;
+  flex-direction: column;
+}
+
+.page-title {
+  font-size: var(--font-data-lg);
+  letter-spacing: 4rpx;
+  margin-bottom: var(--space-2);
+  color: var(--color-ink);
+}
+
+.page-sub {
+  font-size: 26rpx;
+  color: var(--color-ash);
+  letter-spacing: 2rpx;
+}
+
+/* ---------- 过滤栏 ---------- */
+.filter-scroll {
+  margin-bottom: var(--space-4);
+  white-space: nowrap;
+}
+
+.filter-bar {
+  gap: var(--space-2);
+}
+
+.filter-item {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-pill);
+  font-size: var(--font-caption);
+  color: var(--color-ash);
+  background-color: var(--color-card);
+  border: 1rpx solid var(--color-border);
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.filter-item.active {
+  background-color: var(--color-seal);
+  color: #fff;
+  border-color: var(--color-seal);
+}
+
+/* ---------- 课程列表 ---------- */
+.course-list {
+  gap: var(--space-3);
+  display: flex;
+  flex-direction: column;
+}
+
+.course-card {
+  padding: var(--space-4);
+}
+
+.top-row {
+  margin-bottom: var(--space-2);
+}
+
+.course-title {
+  font-size: var(--font-card-title);
+  color: var(--color-ink);
+  flex: 1;
+  margin-right: var(--space-2);
+  line-height: 1.4;
+}
+
+.score-box {
+  flex-shrink: 0;
+}
+
+.like-icon {
+  font-size: var(--font-caption);
+  color: var(--color-seal-soft);
+  margin-right: 4rpx;
+}
+
+.score-num {
+  font-size: var(--font-micro);
+  color: var(--color-ash);
+}
+
+.post-preview {
+  font-size: var(--font-body);
+  color: var(--color-ash);
+  line-height: 1.6;
+  margin-bottom: var(--space-3);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.bottom-row {
+  gap: var(--space-2);
+}
+
+.meta-text {
+  font-size: var(--font-micro);
+  color: var(--color-ash-light);
+  margin-left: var(--space-2);
+}
+
+.time-box {
+  flex-shrink: 0;
+}
+
+.time-text {
+  font-size: var(--font-micro);
+  color: var(--color-ash-light);
+}

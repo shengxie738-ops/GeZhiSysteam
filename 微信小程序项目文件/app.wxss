@@ -1,0 +1,333 @@
+/* ============================================================
+   格至学习系统 - 全局设计系统
+   方向: 书院升级 — 新中式学习空间
+   ============================================================ */
+
+/* ---------- 设计变量 (Design Tokens) ---------- */
+page {
+  /* 色彩系统 */
+  --color-paper: #F6F1E7;
+  --color-card: #FFFDF8;
+  --color-card-hover: #FFF9F0;
+  --color-ink: #28231F;
+  --color-ash: #7B7168;
+  --color-ash-light: #A8A096;
+  --color-seal: #8B2520;
+  --color-seal-soft: #F1D8D2;
+  --color-seal-bg: #FBF0EE;
+  --color-indigo: #253E5C;
+  --color-indigo-soft: #D8E4F0;
+  --color-bamboo: #4F6F52;
+  --color-bamboo-soft: #E0EDE1;
+  --color-border: #E7DDC8;
+  --color-border-light: #F2EDE4;
+  --color-warning: #B7791F;
+  --color-warning-soft: #FEF3C7;
+  --color-dark: #22201D;
+  --color-dark-soft: #E4DCCC;
+  --color-dark-gradient-start: #3D3530;
+  --color-dark-gradient-mid: #5C4F45;
+  --color-dark-gradient-end: #4A3F38;
+  --color-white-muted: rgba(255,255,255,0.7);
+  --color-white-border: rgba(255,255,255,0.15);
+
+  /* 兼容旧变量 */
+  --primary-bg: var(--color-paper);
+  --accent-red: var(--color-seal);
+  --text-main: var(--color-ink);
+  --text-sub: var(--color-ash);
+  --border-color: var(--color-border);
+  --card-bg: var(--color-card);
+  --card-shadow: 0 8rpx 24rpx rgba(40, 35, 31, 0.05);
+  --dark-bg: var(--color-dark);
+
+  /* 字号阶梯 */
+  --font-page-title: 48rpx;
+  --font-section-title: 34rpx;
+  --font-card-title: 30rpx;
+  --font-body: 28rpx;
+  --font-caption: 24rpx;
+  --font-micro: 20rpx;
+  --font-data-lg: 64rpx;
+  --font-data-md: 48rpx;
+
+  /* 间距系统 */
+  --space-1: 8rpx;
+  --space-2: 16rpx;
+  --space-3: 24rpx;
+  --space-4: 32rpx;
+  --space-5: 48rpx;
+  --space-6: 64rpx;
+
+  /* 圆角系统 */
+  --radius-sm: 12rpx;
+  --radius-md: 20rpx;
+  --radius-lg: 28rpx;
+  --radius-xl: 36rpx;
+  --radius-pill: 999rpx;
+
+  /* 阴影系统 */
+  --shadow-card: 0 8rpx 24rpx rgba(40, 35, 31, 0.05);
+  --shadow-card-lg: 0 16rpx 40rpx rgba(40, 35, 31, 0.08);
+  --shadow-float: 0 20rpx 48rpx rgba(40, 35, 31, 0.12);
+
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB',
+    'Microsoft Yahei', sans-serif;
+  background: var(--color-paper);
+  font-size: var(--font-body);
+  color: var(--color-ink);
+  box-sizing: border-box;
+  min-height: 100vh;
+  line-height: 1.65;
+}
+
+/* ---------- 字体 ---------- */
+.serif-text {
+  font-family: 'Songti SC', 'STSong', 'Noto Serif SC', serif;
+  font-weight: 500;
+}
+
+/* ---------- 通用 Flex ---------- */
+.flex-row { display: flex; flex-direction: row; }
+.flex-col { display: flex; flex-direction: column; }
+.align-center { align-items: center; }
+.align-start { align-items: flex-start; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.justify-end { justify-content: flex-end; }
+.flex-1 { flex: 1; }
+
+/* ---------- 卡片系统 ---------- */
+.card {
+  background-color: var(--color-card);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-card);
+  border: 1rpx solid var(--color-border-light);
+}
+
+.card-lg {
+  background-color: var(--color-card);
+  border-radius: var(--radius-xl);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-card-lg);
+  border: 1rpx solid var(--color-border-light);
+}
+
+/* ---------- 按钮系统 ---------- */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-pill);
+  font-size: var(--font-body);
+  font-weight: 500;
+  padding: 0 32rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  border: none;
+  letter-spacing: 2rpx;
+}
+
+.btn::after { border: none; }
+
+.btn-primary {
+  background-color: var(--color-seal);
+  color: #fff;
+  box-shadow: 0 8rpx 20rpx rgba(139, 37, 32, 0.18);
+}
+
+.btn-secondary {
+  background-color: var(--color-card);
+  color: var(--color-ink);
+  border: 1rpx solid var(--color-border);
+}
+
+.btn-ghost {
+  background-color: transparent;
+  color: var(--color-seal);
+  border: 1rpx solid var(--color-seal);
+}
+
+.btn-sm {
+  height: 56rpx;
+  line-height: 56rpx;
+  font-size: var(--font-caption);
+  padding: 0 24rpx;
+}
+
+.btn-xs {
+  height: 48rpx;
+  line-height: 48rpx;
+  font-size: var(--font-micro);
+  padding: 0 20rpx;
+  border-radius: var(--radius-sm);
+}
+
+.btn[disabled] {
+  background-color: var(--color-border) !important;
+  color: rgba(255, 255, 255, 0.6) !important;
+  border-color: var(--color-border) !important;
+  box-shadow: none !important;
+}
+
+/* ---------- 标签系统 ---------- */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4rpx 16rpx;
+  border-radius: var(--radius-pill);
+  font-size: var(--font-micro);
+  font-weight: 500;
+}
+
+.tag-seal { background-color: var(--color-seal-soft); color: var(--color-seal); }
+.tag-indigo { background-color: var(--color-indigo-soft); color: var(--color-indigo); }
+.tag-bamboo { background-color: var(--color-bamboo-soft); color: var(--color-bamboo); }
+.tag-warning { background-color: var(--color-warning-soft); color: var(--color-warning); }
+.tag-dark { background-color: var(--color-dark-soft); color: var(--color-ink); }
+
+/* ---------- 图标容器 ---------- */
+.icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: var(--radius-lg);
+  background-color: var(--color-card);
+  box-shadow: var(--shadow-card);
+  border: 1rpx solid var(--color-border-light);
+}
+
+.icon-box-lg {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: var(--radius-xl);
+}
+
+/* ---------- 空状态 ---------- */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100rpx 40rpx;
+}
+
+.empty-state-icon {
+  font-size: 56rpx;
+  color: var(--color-ash-light);
+  margin-bottom: var(--space-3);
+  opacity: 0.5;
+}
+
+.empty-state-text {
+  font-size: var(--font-caption);
+  color: var(--color-ash-light);
+  text-align: center;
+  line-height: 1.6;
+}
+
+/* ---------- 弹窗系统 ---------- */
+.modal-mask {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(40, 35, 31, 0.45);
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  width: 85%;
+  max-height: 75%;
+  background-color: var(--color-card);
+  border-radius: var(--radius-xl);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-float);
+  border: 1rpx solid var(--color-border-light);
+  animation: modalSlideUp 0.28s ease;
+}
+
+@keyframes modalSlideUp {
+  from { opacity: 0; transform: translateY(40rpx); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-header {
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: 1rpx solid var(--color-border-light);
+}
+
+.modal-title {
+  font-size: var(--font-section-title);
+  color: var(--color-seal);
+  font-weight: 600;
+}
+
+.modal-close {
+  font-size: 40rpx;
+  color: var(--color-ash-light);
+  line-height: 1;
+}
+
+/* ---------- 波纹背景 ---------- */
+.wave-bg {
+  position: fixed;
+  bottom: 0; left: 0;
+  width: 100%;
+  height: 280rpx;
+  background-image: url("data:image/svg+xml,%3Csvg width='400' height='200' viewBox='0 0 400 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,150 C100,175 200,110 400,140' fill='none' stroke='%23e0d8c8' stroke-width='0.8'/%3E%3Cpath d='M0,165 C120,190 220,120 400,155' fill='none' stroke='%23e0d8c8' stroke-width='0.8'/%3E%3Cpath d='M0,180 C140,205 240,135 400,170' fill='none' stroke='%23e0d8c8' stroke-width='0.8'/%3E%3C/svg%3E");
+  background-size: cover;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  z-index: -1;
+  opacity: 0.7;
+}
+
+/* ---------- 竹简分隔线 ---------- */
+.bamboo-divider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: var(--space-3) 0;
+}
+
+.bamboo-divider::before,
+.bamboo-divider::after {
+  content: '';
+  flex: 1;
+  height: 1rpx;
+  background-color: var(--color-border);
+}
+
+.bamboo-divider-dot {
+  width: 8rpx;
+  height: 8rpx;
+  border-radius: 50%;
+  background-color: var(--color-seal);
+  opacity: 0.5;
+}
+
+/* ---------- 输入框 ---------- */
+.input-field {
+  background-color: var(--color-card);
+  border: 1rpx solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0 var(--space-4);
+  height: 80rpx;
+  font-size: var(--font-body);
+  color: var(--color-ink);
+}
+
+.input-field-focus {
+  border-color: var(--color-seal);
+  box-shadow: 0 0 0 2rpx rgba(139, 37, 32, 0.1);
+}
+
+.ph-style {
+  color: var(--color-ash-light);
+}

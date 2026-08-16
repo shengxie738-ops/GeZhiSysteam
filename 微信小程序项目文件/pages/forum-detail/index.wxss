@@ -1,0 +1,236 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 80rpx var(--space-5) 140rpx var(--space-5);
+  box-sizing: border-box;
+}
+
+.top-nav {
+  margin-bottom: var(--space-3);
+  flex-shrink: 0;
+}
+
+.back-btn {
+  font-size: var(--font-caption);
+  color: var(--color-seal);
+  font-weight: bold;
+  letter-spacing: 2rpx;
+}
+
+.detail-scroll {
+  flex: 1;
+  overflow: hidden;
+  margin-bottom: var(--space-3);
+}
+
+/* 帖子主体卡片 */
+.post-card {
+  margin-bottom: var(--space-5);
+}
+
+.post-header {
+  margin-bottom: var(--space-2);
+}
+
+.post-title {
+  font-size: 40rpx;
+  line-height: 1.4;
+  color: var(--color-ink);
+  flex: 1;
+  margin-right: var(--space-3);
+}
+
+.post-meta {
+  margin-bottom: var(--space-4);
+  font-size: var(--font-micro);
+  color: var(--color-ash);
+}
+
+.meta-dot {
+  margin: 0 var(--space-1);
+}
+
+.post-content {
+  font-size: var(--font-body);
+  line-height: 1.8;
+  color: var(--color-ink);
+  margin-bottom: var(--space-4);
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.like-btn {
+  border: 1rpx solid var(--color-border);
+  border-radius: var(--radius-pill);
+  padding: var(--space-1) var(--space-3);
+  background-color: var(--color-card);
+  transition: all 0.3s ease;
+}
+
+.like-btn.liked {
+  background-color: var(--color-seal-soft);
+  border-color: var(--color-seal);
+}
+
+.like-btn.liked .like-icon,
+.like-btn.liked .like-num {
+  color: var(--color-seal);
+  font-weight: bold;
+}
+
+.like-icon {
+  font-size: var(--font-caption);
+  color: var(--color-ash-light);
+  margin-right: var(--space-1);
+}
+
+.like-num {
+  font-size: var(--font-micro);
+  color: var(--color-ash);
+}
+
+/* 讨论区列表 */
+.comments-section {
+  margin-bottom: var(--space-4);
+}
+
+.section-title-box {
+  margin-bottom: var(--space-3);
+}
+
+.section-title {
+  font-size: var(--font-section-title);
+  color: var(--color-ink);
+  letter-spacing: 2rpx;
+}
+
+.comments-count {
+  font-size: var(--font-caption);
+  color: var(--color-ash);
+  margin-left: var(--space-1);
+}
+
+.comments-list {
+  gap: var(--space-3);
+}
+
+.comment-item {
+  background-color: var(--color-card);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  border: 1rpx solid var(--color-border-light);
+  box-shadow: var(--shadow-card);
+  position: relative;
+}
+
+.comment-header {
+  margin-bottom: var(--space-2);
+}
+
+.comment-avatar {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  background-color: var(--color-dark-soft);
+  font-size: var(--font-caption);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: var(--space-2);
+  border: 1rpx solid var(--color-border-light);
+  color: var(--color-ash);
+}
+
+.comment-avatar.ai-avatar {
+  background-color: var(--color-indigo-soft);
+  color: var(--color-indigo);
+}
+
+.comment-author {
+  font-size: var(--font-caption);
+  color: var(--color-ink);
+  font-weight: 500;
+}
+
+.comment-time {
+  font-size: var(--font-micro);
+  color: var(--color-ash);
+}
+
+.comment-content {
+  font-size: 26rpx;
+  line-height: 1.6;
+  color: var(--color-ash);
+  padding-left: 60rpx;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+/* AI 回复高亮 - 靛蓝色系 */
+.comment-item.ai-reply {
+  background-color: rgba(37, 62, 92, 0.03);
+  border: 1rpx solid rgba(37, 62, 92, 0.12);
+}
+
+.ai-badge {
+  background-color: var(--color-indigo);
+  border-radius: var(--radius-sm);
+  padding: 4rpx var(--space-2);
+  align-self: flex-start;
+  margin-bottom: var(--space-2);
+}
+
+.ai-badge-icon {
+  font-size: 16rpx;
+  color: #fff;
+  margin-right: 6rpx;
+}
+
+.ai-badge-text {
+  font-size: 18rpx;
+  color: #fff;
+  font-weight: bold;
+}
+
+/* 底部评论框 */
+.comment-input-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--color-card);
+  border-top: 1rpx solid var(--color-border-light);
+  padding: var(--space-3) var(--space-5) var(--space-5) var(--space-5);
+  box-sizing: border-box;
+  z-index: 1000;
+}
+
+.comment-input {
+  flex: 1;
+  height: 72rpx;
+  background-color: var(--color-paper);
+  border-radius: var(--radius-pill);
+  padding: 0 var(--space-4);
+  font-size: 26rpx;
+  color: var(--color-ink);
+  margin-right: var(--space-3);
+  border: 1rpx solid var(--color-border);
+}
+
+.send-reply-btn {
+  background-color: var(--color-seal);
+  color: #fff;
+  border-radius: var(--radius-pill);
+  font-size: var(--font-caption);
+  padding: 0 var(--space-4);
+  height: 72rpx;
+  line-height: 72rpx;
+  border: none;
+  font-weight: bold;
+}
+
+.send-reply-btn[disabled] {
+  background-color: var(--color-border) !important;
+  color: rgba(255,255,255,0.7) !important;
+}

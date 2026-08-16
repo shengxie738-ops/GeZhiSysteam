@@ -1,0 +1,103 @@
+.container {
+  padding: 100rpx var(--space-4) 180rpx;
+  position: relative;
+}
+
+/* ---------- 加载状态 ---------- */
+.loading-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 160rpx 0;
+}
+
+.loading-text {
+  font-size: var(--font-caption);
+  color: var(--color-ash-light);
+  letter-spacing: 2rpx;
+}
+
+/* ---------- 详情视图 ---------- */
+.detail-view {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.detail-badge {
+  margin-bottom: var(--space-1);
+}
+
+/* ---------- 详情卡片 ---------- */
+.detail-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.detail-title {
+  font-size: var(--font-section-title);
+  line-height: 1.5;
+  letter-spacing: 2rpx;
+}
+
+.detail-content {
+  padding: 0;
+}
+
+.detail-summary {
+  font-size: var(--font-body);
+  color: var(--color-ash);
+  line-height: 1.8;
+}
+
+.detail-tags {
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* ---------- 积分变化 ---------- */
+.detail-score {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) 0;
+}
+
+.detail-score-label {
+  font-size: var(--font-caption);
+  color: var(--color-ash);
+}
+
+.detail-score-value {
+  font-size: var(--font-data-md);
+  font-weight: 700;
+}
+
+.score-positive {
+  color: var(--color-bamboo);
+}
+
+.score-negative {
+  color: var(--color-seal);
+}
+
+/* ---------- 时间信息 ---------- */
+.detail-info {
+  padding-top: var(--space-1);
+}
+
+.detail-time {
+  font-size: var(--font-caption);
+  color: var(--color-ash-light);
+}
+
+/* ---------- 操作按钮 ---------- */
+.detail-action {
+  padding-top: var(--space-2);
+}
+
+/* ---------- 底部返回 ---------- */
+.detail-bottom {
+  padding-top: var(--space-3);
+}

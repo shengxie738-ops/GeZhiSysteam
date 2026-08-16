@@ -1,0 +1,49 @@
+<view class="container">
+  <view class="wave-bg"></view>
+
+  <!-- 顶部 Logo 区域 -->
+  <view class="header-area flex-row align-center">
+    <image class="header-logo" src="/logo/logo1.png" mode="aspectFit"></image>
+    <view class="header-text flex-col">
+      <text class="header-title serif-text">格至教育</text>
+      <text class="header-sub">GEZHI · LEARNING SYSTEM</text>
+    </view>
+  </view>
+
+  <!-- 欢迎语 -->
+  <view class="welcome-box flex-col">
+    <text class="welcome-title serif-text">欢迎回来,</text>
+    <text class="welcome-subtitle serif-text">继续你的求知之旅</text>
+  </view>
+
+  <!-- 表单卡片 -->
+  <view class="form-card">
+    <view class="input-wrapper flex-row align-center">
+      <view class="icon-placeholder">⊙</view>
+      <input class="input-field" placeholder="学号 / 手机号" placeholder-class="ph-style" bindinput="onInputAccount"/>
+    </view>
+    
+    <view class="input-wrapper flex-row align-center">
+      <view class="icon-placeholder">◇</view>
+      <input class="input-field" password placeholder="登录密码" placeholder-class="ph-style" bindinput="onInputPassword"/>
+    </view>
+
+    <view class="options-row flex-row align-center justify-between">
+      <view class="checkbox-group flex-row align-center">
+        <view class="check-icon flex-row align-center justify-center">✓</view>
+        <text class="remember-text">记住我</text>
+      </view>
+      <text class="forgot-text">忘记密码?</text>
+    </view>
+
+    <button class="btn btn-primary login-btn serif-text" bindtap="handleLogin">登  录  →</button>
+  </view>
+
+  <!-- 底部协议确认 -->
+  <view class="bottom-area flex-row align-center justify-center" bindtap="togglePrivacyAgree">
+    <view class="privacy-check flex-row align-center justify-center {{privacyAgreed ? 'checked' : ''}}">
+      <text wx:if="{{privacyAgreed}}">✓</text>
+    </view>
+    <text class="policy-text">我已阅读并同意《用户协议》与《隐私政策》</text>
+  </view>
+</view>

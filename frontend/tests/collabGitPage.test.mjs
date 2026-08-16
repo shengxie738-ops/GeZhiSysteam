@@ -1,0 +1,61 @@
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+
+const frontendRoot = new URL('../', import.meta.url);
+const codingSandbox = readFileSync(new URL('js/components/CodingSandbox.js', frontendRoot), 'utf8');
+const indexHtml = readFileSync(new URL('index.html', frontendRoot), 'utf8');
+
+assert.match(codingSandbox, /from '\.\.\/api\/teamGit\.js'/);
+assert.match(codingSandbox, /项目仓库/);
+assert.match(codingSandbox, /科目类别/);
+assert.match(codingSandbox, /项目仓库名/);
+assert.match(codingSandbox, /项目介绍/);
+assert.match(codingSandbox, /队长/);
+assert.match(codingSandbox, /队员/);
+assert.match(codingSandbox, /仓库状态/);
+assert.match(codingSandbox, /最近更新时间/);
+assert.match(codingSandbox, /PR 状态/);
+assert.match(codingSandbox, /管理主页面/);
+assert.match(codingSandbox, /仓库主页/);
+assert.match(codingSandbox, /Git 工作流/);
+assert.match(codingSandbox, /成员 Git 进度/);
+assert.match(codingSandbox, /Pull Request/);
+assert.match(codingSandbox, /Gitea 实时同步/);
+assert.match(codingSandbox, /Webhook 已接通/);
+assert.match(codingSandbox, /暂无真实 Gitea PR/);
+assert.match(codingSandbox, /演示数据/);
+assert.match(codingSandbox, /team-profile-panel/);
+assert.match(indexHtml, /\.team-profile-panel\s*\{/);
+assert.match(indexHtml, /\.team-profile-panel::before\s*\{[^}]*display:\s*none/s);
+assert.match(indexHtml, /\.team-profile-panel:hover\s*\{[^}]*transform:\s*none/s);
+assert.match(codingSandbox, /openRepositoryHomePullRequests\(pr\)/);
+assert.doesNotMatch(codingSandbox, /@click="openExternalLink\(pr\.url\)"/);
+assert.match(codingSandbox, /同步异常，已显示演示数据/);
+assert.match(codingSandbox, /AI Git 教练分析中/);
+assert.match(codingSandbox, /member\.prCount/);
+assert.match(codingSandbox, /Git 事件日志/);
+assert.match(codingSandbox, /复制成功，请到终端执行。/);
+assert.doesNotMatch(codingSandbox, /打开 Gitea/);
+assert.match(codingSandbox, /创建团队仓库/);
+assert.match(codingSandbox, /绑定已有仓库/);
+assert.match(codingSandbox, /等待系统检测/);
+
+assert.match(codingSandbox, /data-testid="collab-repository-card"/);
+assert.match(codingSandbox, /canManageCollabProject/);
+assert.match(codingSandbox, /deleteCollabProject\(project\)/);
+assert.match(codingSandbox, /teamGitApi\.deleteProject/);
+assert.match(codingSandbox, /data-testid="collab-repository-card" class="[^"]*min-h-\[220px\]/);
+assert.match(codingSandbox, /data-testid="collab-repository-content" class="relative z-10"/);
+assert.match(codingSandbox, /data-testid="collab-repository-meta"/);
+assert.match(codingSandbox, /break-all whitespace-normal leading-relaxed/);
+
+const collabSection = codingSandbox.slice(codingSandbox.indexOf("codingMode === 'collab'"));
+assert.doesNotMatch(collabSection, /setCollabRole/);
+assert.doesNotMatch(collabSection, /activeCollabRole/);
+assert.doesNotMatch(collabSection, />学生<\/button>/);
+assert.doesNotMatch(collabSection, />队长<\/button>/);
+assert.doesNotMatch(collabSection, /monaco-editor-container/);
+assert.doesNotMatch(collabSection, /模块编写:/);
+assert.doesNotMatch(collabSection, /测试并提交/);
+
+console.log('collabGitPage static tests passed');

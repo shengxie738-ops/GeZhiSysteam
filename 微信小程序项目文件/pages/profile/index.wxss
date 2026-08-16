@@ -1,0 +1,143 @@
+.container {
+  padding: 100rpx var(--space-5) 180rpx var(--space-5);
+  position: relative;
+}
+
+.user-header {
+  margin-bottom: var(--space-6);
+}
+
+.avatar {
+  width: 140rpx;
+  height: 140rpx;
+  margin-right: var(--space-5);
+  border-radius: 50%;
+  border: 4rpx solid var(--color-seal-soft);
+}
+
+.user-info {
+  justify-content: center;
+}
+
+.user-name {
+  font-size: var(--font-data-md);
+  color: var(--color-ink);
+  margin-bottom: var(--space-1);
+  letter-spacing: 4rpx;
+}
+
+.user-id {
+  font-size: var(--font-caption);
+  color: var(--color-ash);
+  letter-spacing: 2rpx;
+  margin-bottom: var(--space-2);
+}
+
+.level-tag {
+  align-self: flex-start;
+}
+
+.stats-card {
+  margin-bottom: var(--space-5);
+}
+
+.stat-item {
+  flex: 1;
+}
+
+.stat-top {
+  margin-bottom: var(--space-1);
+}
+
+.stat-num {
+  font-size: var(--font-data-lg);
+  color: var(--color-ink);
+  line-height: 1;
+}
+
+.stat-unit {
+  font-size: var(--font-caption);
+  color: var(--color-ash);
+  margin-left: var(--space-1);
+}
+
+.stat-label {
+  font-size: var(--font-caption);
+  color: var(--color-ash);
+}
+
+.divider {
+  width: 1rpx;
+  height: 60rpx;
+  background-color: var(--color-border);
+}
+
+/* 学习档案 */
+.archive-card {
+  margin-bottom: var(--space-5);
+}
+
+.archive-title {
+  font-size: var(--font-card-title);
+  color: var(--color-ink);
+  margin-bottom: var(--space-3);
+}
+
+.archive-placeholder {
+  height: 120rpx;
+  border: 1rpx dashed var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-paper);
+}
+
+.archive-hint {
+  font-size: var(--font-caption);
+  color: var(--color-ash-light);
+}
+
+/* 菜单列表 */
+.menu-list {
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+
+.menu-item {
+  padding: var(--space-4);
+}
+
+.menu-icon {
+  font-size: 36rpx;
+  margin-right: var(--space-3);
+}
+
+.menu-text {
+  font-size: var(--font-card-title);
+  color: var(--color-ink);
+  font-weight: 500;
+  flex: 1;
+}
+
+.menu-arrow {
+  font-size: 32rpx;
+  color: var(--color-ash-light);
+}
+
+/* 退出登录 */
+.logout-btn {
+  background-color: transparent;
+  border: 1rpx solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  color: var(--color-ash);
+}
+
+.logout-icon {
+  font-size: 32rpx;
+  margin-right: var(--space-2);
+}
+
+.logout-text {
+  font-size: var(--font-card-title);
+  font-weight: 500;
+  letter-spacing: 2rpx;
+}

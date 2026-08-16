@@ -1,0 +1,11 @@
+{
+  "name": "apiProxy",
+  "version": "1.0.0",
+  "description": "GezhiSystem API proxy cloud function",
+  "main": "index.js",
+  "dependencies": {
+    "form-data": "^4.0.0",
+    "got": "^11.8.6",
+    "wx-server-sdk": "~2.6.3"
+  }
+}

@@ -1,0 +1,14 @@
+fastapi>=0.110.0
+uvicorn>=0.27.1
+pydantic-settings>=2.2.1
+sqlalchemy>=2.0.29
+pymysql>=1.1.0
+langgraph>=0.0.35
+langchain-core>=0.1.42
+langchain-openai>=0.1.1
+python-dotenv>=1.0.1
+python-multipart>=0.0.32
+alibabacloud-dypnsapi20170525>=2.0.0
+pypdf>=5.0.0
+python-pptx>=1.0.0
+python-docx>=1.1.0

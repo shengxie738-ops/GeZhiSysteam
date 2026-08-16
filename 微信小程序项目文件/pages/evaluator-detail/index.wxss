@@ -1,0 +1,197 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 80rpx var(--space-4) var(--space-5) var(--space-4);
+  box-sizing: border-box;
+}
+
+/* 进度区域 */
+.progress-bar-wrap {
+  margin-bottom: var(--space-4);
+  flex-shrink: 0;
+}
+
+.progress-info {
+  margin-bottom: var(--space-2);
+}
+
+.progress-text {
+  font-size: var(--font-caption);
+  color: var(--color-ash);
+  font-weight: 500;
+}
+
+.progress-track {
+  width: 100%;
+  height: 8rpx;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-border);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-seal);
+  transition: width 0.3s ease;
+}
+
+/* 题目区域 */
+.quiz-area {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 120rpx;
+}
+
+.question-area {
+  padding: var(--space-4);
+}
+
+.question-num {
+  margin-bottom: var(--space-3);
+}
+
+.num-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  background-color: var(--color-seal);
+  color: #fff;
+  font-size: var(--font-caption);
+  font-weight: 600;
+}
+
+.question-stem {
+  font-size: var(--font-body);
+  line-height: 1.8;
+  color: var(--color-ink);
+  margin-bottom: var(--space-4);
+}
+
+/* 选择题选项 */
+.options-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.option-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: var(--color-card);
+  border: 1rpx solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+  transition: all 0.2s ease;
+}
+
+.option-card.option-selected {
+  background-color: var(--color-seal-soft);
+  border-color: var(--color-seal);
+}
+
+.option-indicator {
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  border: 1rpx solid var(--color-border);
+  margin-right: var(--space-3);
+  flex-shrink: 0;
+}
+
+.option-dot {
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.option-dot.dot-active {
+  width: 20rpx;
+  height: 20rpx;
+  background-color: var(--color-seal);
+}
+
+.option-text {
+  font-size: var(--font-body);
+  color: var(--color-ink);
+  line-height: 1.5;
+}
+
+.option-selected .option-text {
+  color: var(--color-seal);
+  font-weight: 500;
+}
+
+/* 判断题 */
+.judge-options {
+  gap: var(--space-3);
+}
+
+.judge-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  background-color: var(--color-card);
+  border: 1rpx solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  font-size: var(--font-body);
+  color: var(--color-ink);
+  transition: all 0.2s ease;
+}
+
+.judge-btn.judge-active {
+  background-color: var(--color-bamboo-soft);
+  border-color: var(--color-bamboo);
+  color: var(--color-bamboo);
+}
+
+.judge-btn.judge-wrong {
+  background-color: var(--color-seal-soft);
+  border-color: var(--color-seal);
+  color: var(--color-seal);
+}
+
+.judge-icon {
+  font-size: var(--font-section-title);
+}
+
+/* 填空/简答输入 */
+.input-area {
+  margin-top: var(--space-2);
+}
+
+.answer-input {
+  width: 100%;
+  min-height: 200rpx;
+  background-color: var(--color-paper);
+  border: 1rpx solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  font-size: var(--font-body);
+  color: var(--color-ink);
+  line-height: 1.6;
+  box-sizing: border-box;
+}
+
+/* 底部导航栏 */
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-card);
+  border-top: 1rpx solid var(--color-border-light);
+  box-shadow: 0 -4rpx 16rpx rgba(40, 35, 31, 0.05);
+  z-index: 100;
+}

@@ -1,0 +1,106 @@
+<view class="container">
+  <view class="wave-bg"></view>
+
+  <!-- 加载状态 -->
+  <view class="empty-state" wx:if="{{loading}}">
+    <text class="empty-state-icon">◎</text>
+    <text class="empty-state-text">正在加载测评结果...</text>
+  </view>
+
+  <!-- 错误状态 -->
+  <view class="empty-state" wx:elif="{{error}}">
+    <text class="empty-state-icon">✗</text>
+    <text class="empty-state-text">加载失败，请稍后重试</text>
+    <button class="btn btn-sm btn-ghost" style="margin-top: 24rpx;" bindtap="onRetryTap">重新加载</button>
+  </view>
+
+  <!-- 结果内容 -->
+  <view class="result-area" wx:elif="{{result}}">
+    <!-- 成绩卡片 -->
+    <view class="score-card flex-col align-center justify-center">
+      <view class="score-card-tag flex-row align-center justify-between">
+        <view class="tag tag-seal" style="color: rgba(255,255,255,0.9); background: rgba(255,255,255,0.15);">测评完成</view>
+      </view>
+      <text class="score-num serif-text">{{result.score || 0}}</text>
+      <text class="score-label">总分</text>
+      <view class="score-meta flex-row align-center justify-between">
+        <view class="score-meta-item flex-col align-center">
+          <text class="meta-val">{{result.correctRate || 0}}%</text>
+          <text class="meta-lbl">正确率</text>
+        </view>
+        <view class="score-divider"></view>
+        <view class="score-meta-item flex-col align-center">
+          <text class="meta-val">{{result.totalQuestions || 0}}</text>
+          <text class="meta-lbl">总题数</text>
+        </view>
+        <view class="score-divider"></view>
+        <view class="score-meta-item flex-col align-center">
+          <text class="meta-val">{{result.timeTaken || '-'}}</text>
+          <text class="meta-lbl">用时</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 薄弱知识点 -->
+    <view class="weak-section" wx:if="{{result.weakTags && result.weakTags.length > 0}}">
+      <view class="section flex-row align-center justify-between">
+        <text class="section-title serif-text">薄弱知识点</text>
+      </view>
+      <view class="weak-tags flex-row align-center">
+        <view class="tag tag-warning" wx:for="{{result.weakTags}}" wx:key="*this">{{item}}</view>
+      </view>
+    </view>
+
+    <!-- 竹简分隔线 -->
+    <view class="bamboo-divider">
+      <view class="bamboo-divider-dot"></view>
+    </view>
+
+    <!-- 逐题解析 -->
+    <view class="section flex-row align-center justify-between">
+      <text class="section-title serif-text">逐题解析</text>
+    </view>
+
+    <view class="analysis-list">
+      <view class="analysis-card card" wx:for="{{result.questions}}" wx:key="id">
+        <view class="analysis-header flex-row align-center justify-between">
+          <text class="analysis-num">第 {{index + 1}} 题</text>
+          <view class="tag {{item.isCorrect ? 'tag-bamboo' : 'tag-seal'}}">
+            {{item.isCorrect ? '⊙ 正确' : '✗ 错误'}}
+          </view>
+        </view>
+        <text class="analysis-question serif-text">{{item.content || item.question}}</text>
+        <view class="answer-compare flex-col">
+          <view class="answer-row flex-row align-start">
+            <text class="answer-label">你的答案：</text>
+            <text class="answer-val" style="color: {{item.isCorrect ? 'var(--color-bamboo)' : 'var(--color-seal)'}};">{{item.userAnswer || '未作答'}}</text>
+          </view>
+          <view class="answer-row flex-row align-start" wx:if="{{!item.isCorrect}}">
+            <text class="answer-label">正确答案：</text>
+            <text class="answer-val" style="color: var(--color-bamboo);">{{item.correctAnswer}}</text>
+          </view>
+        </view>
+        <view class="explanation-box" wx:if="{{item.explanation}}">
+          <text class="explanation-label">✎ 解析：</text>
+          <text class="explanation-text">{{item.explanation}}</text>
+        </view>
+        <view class="analysis-actions flex-row align-center justify-end">
+          <button class="btn btn-secondary btn-xs" bindtap="addToMistakes"
+            data-qid="{{item.id}}"
+            data-question="{{item.content || item.question}}"
+            data-answer="{{item.correctAnswer}}"
+          >加入错题本</button>
+          <button class="btn btn-ghost btn-xs" bindtap="askAI"
+            data-question="{{item.content || item.question}}"
+          >去问 AI</button>
+        </view>
+      </view>
+    </view>
+
+    <!-- 底部操作 -->
+    <view class="bottom-actions flex-row justify-between">
+      <button class="btn btn-secondary" bindtap="goToMistakes">查看错题本</button>
+      <button class="btn btn-primary" bindtap="backToList">返回测评列表</button>
+    </view>
+  </view>
+</view>

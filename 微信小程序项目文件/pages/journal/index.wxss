@@ -1,0 +1,220 @@
+.container {
+  padding: 100rpx var(--space-4) 180rpx;
+  position: relative;
+}
+
+/* ---------- 页面标题 ---------- */
+.page-header {
+  margin-bottom: var(--space-4);
+}
+
+.page-title {
+  font-size: var(--font-page-title);
+  letter-spacing: 4rpx;
+  display: block;
+}
+
+.page-sub {
+  font-size: var(--font-caption);
+  color: var(--color-ash);
+  margin-top: var(--space-1);
+  display: block;
+}
+
+/* ---------- 筛选栏 ---------- */
+.filter-bar {
+  white-space: nowrap;
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-1);
+}
+
+.filter-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 60rpx;
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-pill);
+  font-size: var(--font-caption);
+  color: var(--color-ash);
+  background-color: var(--color-card);
+  border: 1rpx solid var(--color-border);
+  margin-right: var(--space-2);
+  transition: all 0.2s ease;
+}
+
+.filter-pill-active {
+  background-color: var(--color-seal);
+  color: #fff;
+  border-color: var(--color-seal);
+}
+
+/* ---------- 加载状态 ---------- */
+.loading-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 100rpx 0;
+}
+
+.loading-text {
+  font-size: var(--font-caption);
+  color: var(--color-ash-light);
+  letter-spacing: 2rpx;
+}
+
+/* ---------- 空状态扩展 ---------- */
+.empty-actions {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+/* ---------- 事件列表 ---------- */
+.event-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.event-card {
+  padding: var(--space-4);
+  align-items: flex-start;
+}
+
+/* ---------- 事件图标 ---------- */
+.event-icon-wrap {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+  margin-right: var(--space-3);
+}
+
+.event-icon {
+  font-size: 36rpx;
+  color: var(--color-ash);
+}
+
+.event-icon-chat {
+  color: var(--color-indigo);
+  background: var(--color-indigo-soft);
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.event-icon-mistake {
+  color: var(--color-seal);
+  background: var(--color-seal-soft);
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.event-icon-quiz {
+  color: var(--color-bamboo);
+  background: var(--color-bamboo-soft);
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.event-icon-upload {
+  color: var(--color-warning);
+  background: var(--color-warning-soft);
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------- 事件内容 ---------- */
+.event-body {
+  min-width: 0;
+  gap: var(--space-1);
+}
+
+.event-title {
+  font-size: var(--font-card-title);
+  font-weight: 500;
+  color: var(--color-ink);
+  line-height: 1.4;
+}
+
+.event-summary {
+  font-size: var(--font-caption);
+  color: var(--color-ash);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.event-meta {
+  margin-top: var(--space-1);
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.event-time {
+  font-size: var(--font-micro);
+  color: var(--color-ash-light);
+}
+
+.event-tags {
+  gap: var(--space-1);
+}
+
+/* ---------- 积分变化 ---------- */
+.event-score {
+  flex-shrink: 0;
+  margin-left: var(--space-2);
+}
+
+.score-text {
+  font-size: var(--font-card-title);
+  font-weight: 600;
+}
+
+.score-positive {
+  color: var(--color-bamboo);
+}
+
+.score-negative {
+  color: var(--color-seal);
+}
+
+/* ---------- 加载更多 ---------- */
+.loading-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4) 0;
+}
+
+.no-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4) 0;
+}
+
+.no-more-text {
+  font-size: var(--font-caption);
+  color: var(--color-ash-light);
+  letter-spacing: 2rpx;
+}

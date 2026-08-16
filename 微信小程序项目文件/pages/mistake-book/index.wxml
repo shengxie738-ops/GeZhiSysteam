@@ -1,0 +1,119 @@
+<view class="container">
+  <view class="wave-bg"></view>
+
+  <!-- 顶部导航 -->
+  <view class="top-nav flex-row align-center">
+    <text class="back-btn" bindtap="goBack">← 返回首页</text>
+  </view>
+
+  <view class="header">
+    <text class="page-title serif-text">错题随学特训</text>
+    <text class="page-sub">温故而知新，可以为师矣</text>
+  </view>
+
+  <!-- 统计指标 -->
+  <view class="stats-bar card flex-row align-center justify-between">
+    <view class="stats-box flex-col align-center">
+      <text class="stats-val serif-text">{{summary.total || 0}}</text>
+      <view class="tag tag-dark"><text class="stats-lbl">收录错题</text></view>
+    </view>
+    <view class="stats-box flex-col align-center">
+      <text class="stats-val serif-text" style="color: var(--color-seal);">{{summary.unresolved || 0}}</text>
+      <view class="tag tag-seal"><text class="stats-lbl">待攻克</text></view>
+    </view>
+    <view class="stats-box flex-col align-center">
+      <text class="stats-val serif-text" style="color: var(--color-bamboo);">{{summary.mastered || 0}}</text>
+      <view class="tag tag-bamboo"><text class="stats-lbl">已攻克</text></view>
+    </view>
+  </view>
+
+  <scroll-view scroll-y class="mistake-scroll">
+    <!-- 错题列表 -->
+    <view class="mistake-list flex-col">
+      <view 
+        class="mistake-card" 
+        wx:for="{{mistakes}}" 
+        wx:key="id"
+      >
+        <view class="card-header flex-row align-center justify-between">
+          <view class="flex-row align-center">
+            <view class="tag tag-indigo">{{item.subject || '数据结构'}}</view>
+            <text class="wrong-count">错题指数: {{item.wrongCount || 1}}次</text>
+          </view>
+          <view class="tag {{item.mastered ? 'tag-bamboo' : 'tag-seal'}}">
+            {{item.mastered ? '✓ 已掌握' : '未掌握'}}
+          </view>
+        </view>
+
+        <view class="question-title serif-text">
+          <text>{{item.questionTitle || item.title || '手写双向链表节点删除逻辑'}}</text>
+        </view>
+
+        <!-- AI 诊断详情展示 -->
+        <view class="ai-analysis-box flex-col" wx:if="{{activeDiagnosisId === item.id}}">
+          <view class="analysis-tag flex-row align-center">
+            <text class="analysis-tag-icon">◎</text>
+            <text class="analysis-tag-text">AI 诊断建议：</text>
+          </view>
+          <text class="analysis-body">{{item.aiAnalysis.diagnosis || '在指针操作后未将 prev.next 指向 cur.next，而是误指向了 cur 本身，导致了内存悬挂。建议绘制指针拓扑图进行逐步排查。'}}</text>
+          <text class="analysis-concept">◇ 核心概念：{{item.aiAnalysis.concept || '指针断开时的暂存与前驱节点的更新。'}}</text>
+        </view>
+
+        <!-- 操作区 -->
+        <view class="card-actions flex-row align-center justify-end">
+          <button class="btn btn-xs btn-secondary" bindtap="requestAiDiagnosis" data-id="{{item.id}}" data-index="{{index}}">
+            {{activeDiagnosisId === item.id ? '收起诊断' : 'AI 诊断'}}
+          </button>
+          <button class="btn btn-xs btn-primary" bindtap="startMiniTest" data-id="{{item.id}}" data-title="{{item.questionTitle || item.title}}">
+            微自测
+          </button>
+          <button class="btn btn-xs btn-secondary" bindtap="toggleMastery" data-id="{{item.id}}" data-mastered="{{item.mastered}}">
+            {{item.mastered ? '设为未掌握' : '标记已掌握'}}
+          </button>
+        </view>
+      </view>
+
+      <!-- 空白占位 -->
+      <view class="empty-state" wx:if="{{mistakes.length === 0}}">
+        <text class="empty-state-icon">✓</text>
+        <text class="empty-state-text">所有错题已全部攻克，真棒！</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 微自测 Modal 弹窗 -->
+  <view class="modal-mask" wx:if="{{showTestModal}}" bindtap="closeTestModal">
+    <view class="modal-content flex-col" catchtap="preventBubble">
+      <view class="modal-header flex-row align-center justify-between">
+        <text class="modal-title serif-text">✎ 错题特训微自测</text>
+        <text class="modal-close" bindtap="closeTestModal">×</text>
+      </view>
+      
+      <view class="test-modal-body flex-col">
+        <text class="test-question serif-text">{{currentQuiz.question}}</text>
+        
+        <view 
+          class="test-option flex-row align-center {{selectedOption === item.key ? (item.key === currentQuiz.answer ? 'correct' : 'wrong') : ''}} {{selectedOption && item.key === currentQuiz.answer ? 'correct' : ''}}"
+          wx:for="{{currentQuiz.options}}" 
+          wx:key="key"
+          bindtap="selectOption"
+          data-key="{{item.key}}"
+        >
+          <view class="option-key flex-row align-center justify-center">{{item.key}}</view>
+          <text class="option-text">{{item.text}}</text>
+        </view>
+      </view>
+
+      <view class="test-feedback-box flex-col" wx:if="{{selectedOption}}">
+        <text class="feedback-title" style="color: {{isCorrect ? 'var(--color-bamboo)' : 'var(--color-seal)'}};">
+          {{isCorrect ? '✓ 恭喜你，回答正确！' : '✗ 回答错误，仍需努力'}}
+        </text>
+        <text class="feedback-analysis">解析：本题核心考察{{quizCategory}}。答对本题让你的格物分值同步得到了提升。</text>
+      </view>
+
+      <button class="btn btn-primary serif-text test-modal-btn" bindtap="closeTestModal">
+        {{selectedOption ? '完成特训' : '取消自测'}}
+      </button>
+    </view>
+  </view>
+</view>

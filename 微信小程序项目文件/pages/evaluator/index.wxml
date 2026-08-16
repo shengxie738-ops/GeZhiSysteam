@@ -1,0 +1,71 @@
+<view class="container">
+  <view class="wave-bg"></view>
+
+  <view class="header">
+    <text class="page-title serif-text">测评中心</text>
+    <text class="page-sub">穷物致知 · 以测促学</text>
+  </view>
+
+  <!-- 标签筛选 -->
+  <scroll-view scroll-x class="filter-scroll">
+    <view class="filter-bar flex-row align-center">
+      <view
+        class="tag {{tagFilter === item ? 'tag-seal' : 'tag-dark'}}"
+        wx:for="{{tags}}" wx:key="*this"
+        bindtap="onTagTap"
+        data-tag="{{item}}"
+      >{{item}}</view>
+    </view>
+  </scroll-view>
+
+  <!-- 难度筛选 -->
+  <scroll-view scroll-x class="filter-scroll">
+    <view class="filter-bar flex-row align-center">
+      <view
+        class="tag {{difficultyFilter === item.value ? 'tag-indigo' : 'tag-dark'}}"
+        wx:for="{{difficulties}}" wx:key="value"
+        bindtap="onDifficultyTap"
+        data-value="{{item.value}}"
+      >{{item.label}}</view>
+    </view>
+  </scroll-view>
+
+  <!-- 加载状态 -->
+  <view class="empty-state" wx:if="{{loading}}">
+    <text class="empty-state-icon">◎</text>
+    <text class="empty-state-text">正在加载测评...</text>
+  </view>
+
+  <!-- 错误状态 -->
+  <view class="empty-state" wx:elif="{{error}}">
+    <text class="empty-state-icon">✗</text>
+    <text class="empty-state-text">加载失败，请稍后重试</text>
+    <button class="btn btn-sm btn-ghost" style="margin-top: 24rpx;" bindtap="onRetryTap">重新加载</button>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:elif="{{quizzes.length === 0 && !loading}}">
+    <text class="empty-state-icon">✎</text>
+    <text class="empty-state-text">暂无测评内容\n去上传课件，生成专属测评</text>
+    <button class="btn btn-sm btn-primary" style="margin-top: 24rpx;" bindtap="onGoKnowledge">去上传课件</button>
+  </view>
+
+  <!-- 测评列表 -->
+  <view class="quiz-list" wx:else>
+    <view class="quiz-card card" wx:for="{{quizzes}}" wx:key="id">
+      <view class="quiz-title serif-text">{{item.title}}</view>
+      <view class="quiz-tags flex-row align-center">
+        <view class="tag tag-indigo" wx:for="{{item.topicTags}}" wx:for-item="tag" wx:key="*this">{{tag}}</view>
+      </view>
+      <view class="quiz-meta flex-row align-center justify-between">
+        <view class="quiz-stars flex-row align-center">
+          <text class="star" wx:for="{{[1,2,3,4,5]}}" wx:key="*this" wx:for-item="star" style="color: {{star <= item.difficulty ? 'var(--color-seal)' : 'var(--color-border)'}}">◆</text>
+        </view>
+        <text class="quiz-info">{{item.questionCount || 0}} 题 · 约 {{item.estimatedMinutes || 0}} 分钟</text>
+      </view>
+      <view class="quiz-actions flex-row justify-end">
+        <button class="btn btn-primary btn-sm" bindtap="onStartQuiz" data-id="{{item.id}}">开始测评</button>
+      </view>
+    </view>
+  </view>
+</view>

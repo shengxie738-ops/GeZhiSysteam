@@ -1,0 +1,30 @@
+<!-- pages/knowledge-map/index.wxml -->
+<view class="page-container">
+
+  <!-- Loading -->
+  <view wx:if="{{loading}}" class="loading-wrap">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">正在加载知识地图…</text>
+  </view>
+
+  <!-- Error -->
+  <view wx:elif="{{error}}" class="error-wrap">
+    <text class="empty-state-icon">⊙</text>
+    <text class="empty-state-text">加载失败，请稍后重试</text>
+    <view class="btn btn-ghost btn-sm" style="margin-top:32rpx" bindtap="onRetryTap">重新加载</view>
+  </view>
+
+  <!-- Maintenance -->
+  <view wx:else class="maintenance-card card">
+    <text class="empty-state-icon">▫</text>
+    <text class="maintenance-title serif-text">知识地图维护中</text>
+    <text class="empty-state-text">当前知识地图源数据正在修正，暂不展示异常内容。请先使用学情画像六维图谱、错题本与作业任务查看学习状态。</text>
+  </view>
+
+  <!-- Bottom -->
+  <view class="bottom-link" bindtap="goToPortrait">
+    <text class="bottom-link-text">◂ 返回学情画像</text>
+  </view>
+
+  <view class="wave-bg"></view>
+</view>

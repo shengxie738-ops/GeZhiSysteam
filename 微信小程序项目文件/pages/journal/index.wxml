@@ -1,0 +1,106 @@
+<view class="container">
+  <view class="wave-bg"></view>
+
+  <!-- 顶部标题区 -->
+  <view class="page-header">
+    <text class="page-title serif-text">学习学纪</text>
+    <text class="page-sub" wx:if="{{!loading && !error}}">共 {{events.length}} 条记录</text>
+  </view>
+
+  <!-- 筛选栏 -->
+  <scroll-view class="filter-bar" scroll-x="true" enhanced="true" show-scrollbar="{{false}}">
+    <view
+      class="filter-pill {{typeFilter === item.type ? 'filter-pill-active' : ''}}"
+      wx:for="{{filterOptions}}"
+      wx:key="type"
+      data-type="{{item.type}}"
+      bindtap="onFilterTap"
+    >
+      <text>{{item.label}}</text>
+    </view>
+  </scroll-view>
+
+  <!-- 加载中 -->
+  <view class="loading-state" wx:if="{{loading}}">
+    <text class="loading-text">学纪加载中…</text>
+  </view>
+
+  <!-- 错误状态 -->
+  <view class="empty-state" wx:elif="{{error}}">
+    <text class="empty-state-icon">!</text>
+    <text class="empty-state-text">{{errorMsg || '加载学纪失败'}}</text>
+    <button class="btn btn-ghost btn-sm" style="margin-top: 32rpx;" bindtap="onRetryTap">重新加载</button>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:elif="{{!loading && events.length === 0}}">
+    <text class="empty-state-icon">☰</text>
+    <text class="empty-state-text">暂无学纪记录\n开始学习，记录你的每一步成长</text>
+    <view class="empty-actions">
+      <button class="btn btn-primary btn-sm" bindtap="goToChat">AI 问答</button>
+      <button class="btn btn-secondary btn-sm" bindtap="goToQuiz">开始测评</button>
+      <button class="btn btn-ghost btn-sm" bindtap="goUpload">上传资料</button>
+    </view>
+  </view>
+
+  <!-- 事件列表 -->
+  <view class="event-list" wx:else>
+    <view
+      class="card event-card flex-row"
+      wx:for="{{events}}"
+      wx:key="id"
+      data-id="{{item.id}}"
+      data-type="{{item.type}}"
+      data-related="{{item.relatedIds}}"
+      bindtap="onEventTap"
+    >
+      <!-- 左侧类型图标 -->
+      <view class="event-icon-wrap flex-row align-center justify-center"
+        wx:if="{{item.type === 'chat' || item.type === 'rag'}}">
+        <text class="event-icon event-icon-chat">◎</text>
+      </view>
+      <view class="event-icon-wrap flex-row align-center justify-center"
+        wx:elif="{{item.type === 'mistake'}}">
+        <text class="event-icon event-icon-mistake">✎</text>
+      </view>
+      <view class="event-icon-wrap flex-row align-center justify-center"
+        wx:elif="{{item.type === 'quiz'}}">
+        <text class="event-icon event-icon-quiz">◈</text>
+      </view>
+      <view class="event-icon-wrap flex-row align-center justify-center"
+        wx:elif="{{item.type === 'knowledge_upload'}}">
+        <text class="event-icon event-icon-upload">▸</text>
+      </view>
+      <view class="event-icon-wrap flex-row align-center justify-center" wx:else>
+        <text class="event-icon">○</text>
+      </view>
+
+      <!-- 中间内容 -->
+      <view class="event-body flex-col flex-1">
+        <text class="event-title">{{item.title}}</text>
+        <text class="event-summary" wx:if="{{item.summary}}">{{item.summary}}</text>
+        <view class="event-meta flex-row align-center">
+          <text class="event-time">{{item.createdAt}}</text>
+          <view class="event-tags flex-row" wx:if="{{item.tags && item.tags.length > 0}}">
+            <text class="tag tag-dark" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this">{{tag}}</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 右侧积分变化 -->
+      <view class="event-score flex-row align-center" wx:if="{{item.scoreDelta}}">
+        <text class="score-text {{item.scoreDelta > 0 ? 'score-positive' : 'score-negative'}}">
+          {{item.scoreDelta > 0 ? '+' : ''}}{{item.scoreDelta}}
+        </text>
+      </view>
+    </view>
+
+    <!-- 加载更多 -->
+    <view class="loading-more" wx:if="{{loadingMore}}">
+      <text class="loading-text">加载更多…</text>
+    </view>
+    <view class="no-more" wx:elif="{{!hasMore && events.length > 0}}">
+      <text class="no-more-text">— 已展示全部学纪 —</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,139 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  height: 100vh;
+  padding: 64rpx var(--space-5) 40rpx;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.header-area {
+  margin-bottom: var(--space-3);
+}
+
+.header-logo {
+  width: 72rpx;
+  height: 72rpx;
+  margin-right: var(--space-3);
+}
+
+.header-title {
+  font-size: var(--font-page-title);
+  letter-spacing: 4rpx;
+  color: var(--color-ink);
+}
+
+.header-sub {
+  font-size: var(--font-micro);
+  color: var(--color-ash);
+  letter-spacing: 2rpx;
+  margin-top: 4rpx;
+}
+
+.welcome-box {
+  margin-bottom: var(--space-4);
+}
+
+.welcome-title {
+  font-size: 56rpx;
+  color: var(--color-ink);
+  margin-bottom: var(--space-1);
+  letter-spacing: 4rpx;
+}
+
+.welcome-subtitle {
+  font-size: 34rpx;
+  color: var(--color-ash);
+  letter-spacing: 4rpx;
+}
+
+.form-card {
+  background-color: var(--color-card);
+  border-radius: var(--radius-xl);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-card-lg);
+  border: 1rpx solid var(--color-border-light);
+}
+
+.input-wrapper {
+  height: 84rpx;
+  border: 1rpx solid var(--color-border);
+  border-radius: var(--radius-pill);
+  padding: 0 var(--space-4);
+  margin-bottom: var(--space-3);
+  background-color: var(--color-card);
+}
+
+.icon-placeholder {
+  font-size: 36rpx;
+  color: var(--color-ash-light);
+  margin-right: var(--space-3);
+}
+
+.input-field {
+  flex: 1;
+  font-size: var(--font-card-title);
+  color: var(--color-ink);
+}
+
+.options-row {
+  margin-bottom: var(--space-4);
+  padding: 0 var(--space-1);
+}
+
+.check-icon {
+  width: 32rpx;
+  height: 32rpx;
+  border-radius: 50%;
+  background-color: var(--color-seal);
+  color: #fff;
+  font-size: var(--font-caption);
+  margin-right: var(--space-2);
+}
+
+.remember-text {
+  font-size: 26rpx;
+  color: var(--color-ink);
+}
+
+.forgot-text {
+  font-size: 26rpx;
+  color: var(--color-seal);
+}
+
+.login-btn {
+  width: 100% !important;
+  height: 84rpx;
+  line-height: 84rpx;
+  font-size: var(--font-section-title);
+  letter-spacing: 8rpx;
+}
+
+.bottom-area {
+  width: 100%;
+  margin-top: var(--space-4);
+}
+
+.privacy-check {
+  width: 28rpx;
+  height: 28rpx;
+  border-radius: 50%;
+  border: 1rpx solid var(--color-border);
+  color: #fff;
+  font-size: 20rpx;
+  margin-right: var(--space-2);
+  flex-shrink: 0;
+}
+
+.privacy-check.checked {
+  background-color: var(--color-seal);
+  border-color: var(--color-seal);
+}
+
+.policy-text {
+  font-size: var(--font-micro);
+  color: var(--color-ash-light);
+}

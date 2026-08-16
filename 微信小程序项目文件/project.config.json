@@ -1,0 +1,79 @@
+{
+    "projectname":  "gezhi-education",
+    "setting":  {
+                    "es6":  true,
+                    "postcss":  true,
+                    "minified":  true,
+                    "uglifyFileName":  false,
+                    "enhance":  true,
+                    "packNpmRelationList":  [
+
+                                            ],
+                    "babelSetting":  {
+                                         "ignore":  [
+
+                                                    ],
+                                         "disablePlugins":  [
+
+                                                            ],
+                                         "outputPath":  ""
+                                     },
+                    "useCompilerPlugins":  false,
+                    "minifyWXML":  true,
+                    "compileWorklet":  false,
+                    "uploadWithSourceMap":  true,
+                    "packNpmManually":  false,
+                    "minifyWXSS":  true,
+                    "localPlugins":  false,
+                    "disableUseStrict":  false,
+                    "condition":  false,
+                    "swc":  false,
+                    "disableSWC":  true
+                },
+    "compileType":  "miniprogram",
+    "cloudfunctionRoot":  "cloud/",
+    "simulatorPluginLibVersion":  {
+
+                                  },
+    "packOptions":  {
+                        "ignore":  [
+                                       {
+                                           "type":  "folder",
+                                           "value":  ".trae"
+                                       },
+                                       {
+                                           "type":  "folder",
+                                           "value":  "node_modules"
+                                       },
+                                       {
+                                           "type":  "folder",
+                                           "value":  "AIskills"
+                                       },
+                                       {
+                                           "type":  "file",
+                                           "value":  "前端优化方案.md"
+                                       },
+                                       {
+                                           "type":  "file",
+                                           "value":  "README.md"
+                                       },
+                                       {
+                                           "type":  "file",
+                                           "value":  "test-preview.html"
+                                       },
+                                       {
+                                           "type":  "file",
+                                           "value":  "test-visual.py"
+                                       }
+                                   ],
+                        "include":  [
+
+                                    ]
+                    },
+    "appid":  "wx02ffaaff1382ff9f",
+    "editorSetting":  {
+
+                      },
+    "libVersion":  "3.16.2",
+    "miniprogramRoot":  "./"
+}

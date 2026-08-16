@@ -1,0 +1,78 @@
+<view class="container">
+  <view class="wave-bg"></view>
+
+  <view class="top-nav flex-row align-center">
+    <text class="back-btn" bindtap="goBack">← 返回作业</text>
+  </view>
+
+  <view class="empty-state" wx:if="{{loading}}">
+    <text class="empty-state-icon">◎</text>
+    <text class="empty-state-text">正在加载作业详情...</text>
+  </view>
+
+  <view class="empty-state" wx:elif="{{error}}">
+    <text class="empty-state-icon">✗</text>
+    <text class="empty-state-text">加载失败，请稍后重试</text>
+    <button class="btn btn-sm btn-ghost" style="margin-top: 24rpx;" bindtap="onRetryTap">重新加载</button>
+  </view>
+
+  <block wx:elif="{{homework}}">
+    <view class="homework-head card">
+      <view class="flex-row align-start justify-between">
+        <text class="page-title serif-text">{{homework.title}}</text>
+        <view class="tag {{homework.statusText === '已提交' ? 'tag-bamboo' : 'tag-warning'}}">{{homework.statusText}}</view>
+      </view>
+      <text class="page-sub">{{homework.subjectName}} · {{homework.deadline || '暂无截止时间'}}</text>
+      <text class="knowledge-point">{{homework.knowledgePoint || homework.description || ''}}</text>
+    </view>
+
+    <view class="question-list">
+      <view class="card question-card" wx:for="{{questions}}" wx:key="id">
+        <view class="question-header flex-row align-center justify-between">
+          <text class="question-index">第 {{index + 1}} 题</text>
+          <view class="tag tag-dark">{{item.type === 'choice' ? '选择题' : item.type === 'programming' ? '编程题' : item.type === 'fill' ? '填空题' : '问答题'}}</view>
+        </view>
+        <text class="question-title serif-text">{{item.content}}</text>
+        <text class="question-desc" wx:if="{{item.desc}}">{{item.desc}}</text>
+
+        <view class="options-list" wx:if="{{item.type === 'choice'}}">
+          <view class="option-card {{answers[item.id] === option.text || answers[item.id] === option.key ? 'option-selected' : ''}}"
+                wx:for="{{item.options}}" wx:for-item="option" wx:key="key"
+                bindtap="onOptionTap"
+                data-qid="{{item.id}}"
+                data-value="{{option.text}}">
+            <view class="option-key">{{option.key}}</view>
+            <text class="option-text">{{option.text}}</text>
+          </view>
+        </view>
+
+        <textarea wx:elif="{{item.type === 'programming'}}"
+                  class="answer-input code-input"
+                  placeholder="请输入代码或解题说明..."
+                  placeholder-class="ph-style"
+                  value="{{answers[item.id]}}"
+                  bindinput="onInputAnswer"
+                  data-qid="{{item.id}}"
+                  maxlength="8000" />
+
+        <textarea wx:else
+                  class="answer-input"
+                  placeholder="请输入你的答案..."
+                  placeholder-class="ph-style"
+                  value="{{answers[item.id]}}"
+                  bindinput="onInputAnswer"
+                  data-qid="{{item.id}}"
+                  maxlength="3000" />
+
+        <view class="starter-code" wx:if="{{item.starterCode}}">
+          <text class="starter-title">参考起始代码</text>
+          <text class="starter-body">{{item.starterCode}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="bottom-bar">
+      <button class="btn btn-primary" disabled="{{submitting}}" bindtap="onSubmit">{{submitting ? '提交中...' : '提交作业'}}</button>
+    </view>
+  </block>
+</view>

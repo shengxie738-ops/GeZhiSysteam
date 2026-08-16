@@ -1,0 +1,76 @@
+<view class="container">
+  <view class="wave-bg"></view>
+
+  <view class="header">
+    <text class="page-title serif-text">学术空间 · 论坛</text>
+    <text class="page-sub">博观而约取，厚积而薄发</text>
+  </view>
+
+  <!-- 分类 Tabs 过滤器 -->
+  <scroll-view scroll-x class="filter-scroll" show-scrollbar="false">
+    <view class="filter-bar flex-row align-center">
+      <view
+        class="filter-item {{activeCategory === 'all' ? 'active' : ''}}"
+        bindtap="switchCategory"
+        data-category="all"
+      >全部</view>
+      <view
+        class="filter-item {{activeCategory === 'qna' ? 'active' : ''}}"
+        bindtap="switchCategory"
+        data-category="qna"
+      >课程答疑</view>
+      <view
+        class="filter-item {{activeCategory === 'competition' ? 'active' : ''}}"
+        bindtap="switchCategory"
+        data-category="competition"
+      >竞赛探讨</view>
+      <view
+        class="filter-item {{activeCategory === 'experience' ? 'active' : ''}}"
+        bindtap="switchCategory"
+        data-category="experience"
+      >经验交流</view>
+      <view
+        class="filter-item {{activeCategory === 'chat' ? 'active' : ''}}"
+        bindtap="switchCategory"
+        data-category="chat"
+      >闲谈杂聊</view>
+    </view>
+  </scroll-view>
+
+  <!-- 论坛发帖列表 -->
+  <view class="course-list">
+    <view
+      class="card course-card flex-col"
+      wx:for="{{posts}}"
+      wx:key="id"
+      bindtap="viewPostDetail"
+      data-id="{{item.id}}"
+    >
+      <view class="top-row flex-row align-start justify-between">
+        <text class="course-title serif-text">{{item.title || '无标题帖'}}</text>
+        <view class="score-box flex-row align-center">
+          <text class="like-icon">♥</text>
+          <text class="score-num">{{item.likes || 0}}</text>
+        </view>
+      </view>
+
+      <text class="post-preview">{{item.content || ''}}</text>
+
+      <view class="bottom-row flex-row align-center justify-between">
+        <view class="flex-row align-center">
+          <view class="tag tag-seal">{{item.categoryLabel || '答疑'}}</view>
+          <text class="meta-text">作者: {{item.author || '匿名'}}</text>
+        </view>
+        <view class="time-box flex-row align-center">
+          <text class="time-text">{{item.simpleTime || '刚才'}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 空列表提示 -->
+    <view class="empty-state" wx:if="{{posts.length === 0}}">
+      <text class="empty-state-icon">暂无</text>
+      <text class="empty-state-text">此分类下暂无学术帖子</text>
+    </view>
+  </view>
+</view>

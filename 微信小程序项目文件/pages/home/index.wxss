@@ -1,0 +1,433 @@
+.container {
+  padding: 100rpx var(--space-4) calc(160rpx + env(safe-area-inset-bottom)) var(--space-4);
+  position: relative;
+}
+
+/* ---------- 顶部导航 ---------- */
+.top-nav {
+  margin-bottom: var(--space-2);
+}
+
+.greeting-sub {
+  font-size: var(--font-caption);
+  color: var(--color-ash);
+  letter-spacing: 2rpx;
+}
+
+.bell-icon {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  background-color: var(--color-card);
+  box-shadow: var(--shadow-card);
+  position: relative;
+  border: 1rpx solid var(--color-border-light);
+}
+
+.bell-dot {
+  width: 28rpx;
+  height: 28rpx;
+  border-radius: 50%;
+  border: 3rpx solid var(--color-ash-light);
+  position: relative;
+}
+
+.bell-dot::after {
+  content: '';
+  position: absolute;
+  bottom: -6rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14rpx;
+  height: 6rpx;
+  border-radius: 0 0 50% 50%;
+  border: 3rpx solid var(--color-ash-light);
+  border-top: none;
+}
+
+.red-dot {
+  position: absolute;
+  top: 12rpx;
+  right: 12rpx;
+  width: 12rpx;
+  height: 12rpx;
+  background-color: var(--color-seal);
+  border-radius: 50%;
+  border: 2rpx solid var(--color-card);
+}
+
+/* ---------- Header ---------- */
+.header {
+  margin-bottom: var(--space-5);
+}
+
+.page-title {
+  font-size: var(--font-page-title);
+  letter-spacing: 4rpx;
+}
+
+.user-display {
+  font-size: var(--font-body);
+  color: var(--color-ash);
+}
+
+/* ---------- 学业案卷卡片 ---------- */
+.study-card {
+  width: 100%;
+  min-height: 300rpx;
+  border-radius: var(--radius-xl);
+  padding: var(--space-5);
+  margin-bottom: var(--space-4);
+  background: linear-gradient(145deg, #3D3530 0%, #5C4F45 40%, #4A3F38 100%);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-card-lg);
+  color: #fff;
+}
+
+.study-card::before {
+  content: '学业';
+  position: absolute;
+  top: -20rpx;
+  right: -10rpx;
+  font-size: 180rpx;
+  font-family: 'Songti SC', 'STSong', serif;
+  color: rgba(255, 255, 255, 0.04);
+  font-weight: 700;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.card-tag {
+  margin-bottom: var(--space-3);
+}
+
+.study-card-body {
+  margin-bottom: var(--space-3);
+}
+
+.days-box {
+  align-items: baseline;
+}
+
+.days-num {
+  font-size: 96rpx;
+  line-height: 1;
+  color: #fff;
+  text-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.15);
+}
+
+.days-unit {
+  font-size: var(--font-body);
+  color: rgba(255, 255, 255, 0.7);
+  margin-left: 12rpx;
+}
+
+.study-card-meta {
+  opacity: 0.5;
+}
+
+.meta-label {
+  font-size: var(--font-caption);
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 4rpx;
+}
+
+.meta-line {
+  font-size: var(--font-data-lg);
+  color: rgba(255, 255, 255, 0.15);
+  line-height: 1;
+}
+
+.card-quote {
+  font-size: var(--font-caption);
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 2rpx;
+}
+
+/* ---------- 学业能力分析 ---------- */
+.section {
+  margin-bottom: var(--space-3);
+}
+
+.section-title {
+  font-size: var(--font-section-title);
+  letter-spacing: 2rpx;
+}
+
+.section-more {
+  font-size: var(--font-caption);
+  color: var(--color-ash);
+}
+
+.analysis-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.analysis-card {
+  padding: var(--space-4);
+}
+
+.progress-circle {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+  border: 5rpx solid var(--color-seal);
+  margin-right: var(--space-4);
+  flex-shrink: 0;
+}
+
+.progress-seal {
+  border-color: var(--color-seal);
+  background: conic-gradient(var(--color-seal-soft) 0%, var(--color-seal-soft) 100%);
+}
+
+.progress-indigo {
+  border-color: var(--color-indigo);
+  background: conic-gradient(var(--color-indigo-soft) 0%, var(--color-indigo-soft) 100%);
+}
+
+.progress-num {
+  font-size: var(--font-card-title);
+  font-weight: 700;
+  color: var(--color-ink);
+  background: var(--color-card);
+  width: 76rpx;
+  height: 76rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.analysis-info {
+  flex: 1;
+  gap: var(--space-1);
+}
+
+.analysis-title {
+  font-size: var(--font-card-title);
+  margin-top: var(--space-1);
+}
+
+.analysis-desc {
+  font-size: var(--font-caption);
+  color: var(--color-ash);
+}
+
+/* ---------- 常用功能网格 ---------- */
+.grid-menu {
+  margin-bottom: var(--space-4);
+}
+
+.menu-item {
+  width: 25%;
+}
+
+.compact-menu {
+  justify-content: space-between;
+}
+
+.menu-icon-char {
+  font-size: 44rpx;
+  color: var(--color-ink);
+}
+
+.menu-text {
+  font-size: var(--font-caption);
+  color: var(--color-ink);
+  margin-top: var(--space-1);
+}
+
+/* ---------- Nudge Modal ---------- */
+.nudge-modal-body {
+  overflow-y: auto;
+  max-height: 450rpx;
+  margin-bottom: var(--space-4);
+}
+
+.nudge-item {
+  padding: var(--space-2) 0;
+  border-bottom: 1rpx dashed var(--color-border-light);
+}
+
+.nudge-item:last-child {
+  border-bottom: none;
+}
+
+.nudge-item-meta {
+  margin-bottom: var(--space-1);
+}
+
+.nudge-sender {
+  font-size: var(--font-caption);
+  color: var(--color-seal);
+  font-weight: 500;
+}
+
+.nudge-time {
+  font-size: var(--font-micro);
+  color: var(--color-ash-light);
+}
+
+.nudge-msg {
+  font-size: 26rpx;
+  color: var(--color-ash);
+  line-height: 1.6;
+}
+
+.nudge-empty {
+  padding: var(--space-5) 0;
+  text-align: center;
+  font-size: var(--font-caption);
+  color: var(--color-ash-light);
+}
+
+.nudge-modal-btn {
+  background-color: var(--color-seal);
+  color: #fff;
+  border-radius: var(--radius-pill);
+  font-size: var(--font-body);
+  padding: 10rpx 0;
+  border: none;
+  box-shadow: 0 8rpx 20rpx rgba(139, 37, 32, 0.18);
+}
+
+/* ---------- 第二行功能网格 ---------- */
+.grid-menu-3 {
+  margin-bottom: var(--space-4);
+}
+
+.grid-menu-3 .menu-item {
+  width: auto;
+  flex: 1;
+}
+
+/* ---------- 作业摘要 ---------- */
+.homework-summary {
+  margin-bottom: var(--space-4);
+}
+
+.homework-counts {
+  margin-bottom: var(--space-3);
+}
+
+.homework-count {
+  flex: 1;
+  align-items: center;
+}
+
+.homework-count-num {
+  font-size: var(--font-data-md);
+  color: var(--color-ink);
+  line-height: 1;
+}
+
+.homework-count-label {
+  font-size: var(--font-caption);
+  color: var(--color-ash);
+  margin-top: var(--space-1);
+}
+
+.homework-mini-list {
+  border-top: 1rpx solid var(--color-border-light);
+}
+
+.homework-mini-item {
+  padding: var(--space-2) 0;
+  border-bottom: 1rpx dashed var(--color-border-light);
+  gap: var(--space-2);
+}
+
+.homework-mini-item:last-child {
+  border-bottom: none;
+}
+
+.homework-mini-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.homework-mini-title {
+  font-size: var(--font-caption);
+  color: var(--color-ink);
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.homework-mini-meta {
+  font-size: var(--font-micro);
+  color: var(--color-ash);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.empty-state-sm {
+  padding: var(--space-3) 0;
+}
+
+/* ---------- 最近学纪 ---------- */
+.journal-list {
+  margin-bottom: var(--space-4);
+}
+
+.journal-card {
+  margin-bottom: var(--space-2);
+  padding: var(--space-3);
+}
+
+.journal-icon {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: var(--radius-md);
+  background-color: var(--color-indigo-soft);
+  color: var(--color-indigo);
+  font-size: 32rpx;
+  flex-shrink: 0;
+  margin-right: var(--space-3);
+}
+
+.journal-info {
+  gap: 4rpx;
+}
+
+.journal-title {
+  font-size: var(--font-caption);
+  color: var(--color-ink);
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 380rpx;
+}
+
+.journal-summary {
+  font-size: var(--font-micro);
+  color: var(--color-ash);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 380rpx;
+}
+
+.journal-time {
+  font-size: var(--font-micro);
+  color: var(--color-ash-light);
+}
+
+.journal-delta {
+  font-size: var(--font-caption);
+  color: var(--color-bamboo);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.journal-delta-neg {
+  color: var(--color-seal);
+}

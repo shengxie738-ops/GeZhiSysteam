@@ -1,0 +1,81 @@
+.container {
+  padding: 90rpx var(--space-4) 160rpx var(--space-4);
+  position: relative;
+}
+
+.top-nav {
+  margin-bottom: var(--space-3);
+}
+
+.back-btn {
+  font-size: var(--font-caption);
+  color: var(--color-seal);
+}
+
+.header {
+  margin-bottom: var(--space-4);
+}
+
+.page-title {
+  display: block;
+  font-size: var(--font-page-title);
+  color: var(--color-ink);
+  letter-spacing: 4rpx;
+}
+
+.page-sub {
+  display: block;
+  font-size: var(--font-caption);
+  color: var(--color-ash);
+  margin-top: var(--space-1);
+}
+
+.homework-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.homework-card {
+  padding: var(--space-4);
+}
+
+.homework-card-head {
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+.homework-title {
+  flex: 1;
+  font-size: var(--font-card-title);
+  color: var(--color-ink);
+  line-height: 1.5;
+}
+
+.homework-desc {
+  display: block;
+  font-size: var(--font-caption);
+  color: var(--color-ash);
+  line-height: 1.6;
+  margin-bottom: var(--space-3);
+}
+
+.homework-meta,
+.deadline-row {
+  font-size: var(--font-caption);
+  color: var(--color-ash);
+}
+
+.deadline-row {
+  margin-top: var(--space-2);
+  padding-top: var(--space-2);
+  border-top: 1rpx dashed var(--color-border-light);
+}
+
+.deadline-label {
+  color: var(--color-ash-light);
+}
+
+.deadline-value {
+  color: var(--color-warning);
+}

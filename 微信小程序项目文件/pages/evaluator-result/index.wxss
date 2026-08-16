@@ -1,0 +1,185 @@
+.container {
+  padding: 100rpx var(--space-4) 180rpx var(--space-4);
+  position: relative;
+}
+
+/* 成绩卡片 */
+.score-card {
+  width: 100%;
+  min-height: 320rpx;
+  border-radius: var(--radius-xl);
+  padding: var(--space-5);
+  margin-bottom: var(--space-4);
+  background: linear-gradient(145deg, var(--color-dark-gradient-start) 0%, var(--color-dark-gradient-mid) 40%, var(--color-dark-gradient-end) 100%);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-card-lg);
+  color: #fff;
+}
+
+.score-card::before {
+  content: '测评';
+  position: absolute;
+  top: -20rpx;
+  right: -10rpx;
+  font-size: 180rpx;
+  font-family: 'Songti SC', 'STSong', serif;
+  color: rgba(255, 255, 255, 0.04);
+  font-weight: 700;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.score-card-tag {
+  width: 100%;
+  margin-bottom: var(--space-3);
+}
+
+.score-num {
+  font-size: 96rpx;
+  line-height: 1;
+  color: #fff;
+  text-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.15);
+}
+
+.score-label {
+  font-size: var(--font-caption);
+  color: var(--color-white-muted);
+  margin-top: var(--space-1);
+  margin-bottom: var(--space-4);
+  letter-spacing: 4rpx;
+}
+
+.score-meta {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+}
+
+.score-meta-item {
+  flex: 1;
+}
+
+.meta-val {
+  font-size: var(--font-card-title);
+  font-weight: 600;
+  color: #fff;
+}
+
+.meta-lbl {
+  font-size: var(--font-micro);
+  color: var(--color-white-muted);
+  margin-top: var(--space-1);
+}
+
+.score-divider {
+  width: 1rpx;
+  height: 48rpx;
+  background-color: var(--color-white-border);
+}
+
+/* 薄弱知识点 */
+.weak-section {
+  margin-bottom: var(--space-2);
+}
+
+.section {
+  margin-bottom: var(--space-3);
+}
+
+.section-title {
+  font-size: var(--font-section-title);
+  letter-spacing: 2rpx;
+}
+
+.weak-tags {
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+/* 逐题解析 */
+.analysis-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.analysis-card {
+  padding: var(--space-4);
+}
+
+.analysis-header {
+  margin-bottom: var(--space-2);
+}
+
+.analysis-num {
+  font-size: var(--font-caption);
+  color: var(--color-ash);
+  font-weight: 500;
+}
+
+.analysis-question {
+  font-size: var(--font-body);
+  line-height: 1.7;
+  color: var(--color-ink);
+  margin-bottom: var(--space-3);
+}
+
+.answer-compare {
+  background-color: var(--color-paper);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  margin-bottom: var(--space-3);
+  gap: var(--space-1);
+}
+
+.answer-row {
+  gap: var(--space-1);
+}
+
+.answer-label {
+  font-size: var(--font-caption);
+  color: var(--color-ash);
+  flex-shrink: 0;
+}
+
+.answer-val {
+  font-size: var(--font-caption);
+  font-weight: 500;
+}
+
+.explanation-box {
+  background-color: var(--color-indigo-soft);
+  border-left: 6rpx solid var(--color-indigo);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.explanation-label {
+  font-size: var(--font-micro);
+  color: var(--color-indigo);
+  font-weight: bold;
+  margin-bottom: var(--space-1);
+}
+
+.explanation-text {
+  font-size: var(--font-caption);
+  color: var(--color-ink);
+  line-height: 1.6;
+}
+
+.analysis-actions {
+  gap: var(--space-2);
+}
+
+/* 底部操作 */
+.bottom-actions {
+  margin-top: var(--space-5);
+  gap: var(--space-3);
+}
+
+.bottom-actions .btn {
+  flex: 1;
+}

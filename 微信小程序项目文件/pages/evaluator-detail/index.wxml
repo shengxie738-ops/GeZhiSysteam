@@ -1,0 +1,99 @@
+<view class="container">
+  <view class="wave-bg"></view>
+
+  <!-- 加载状态 -->
+  <view class="empty-state" wx:if="{{loading}}">
+    <text class="empty-state-icon">◎</text>
+    <text class="empty-state-text">正在加载题目...</text>
+  </view>
+
+  <!-- 错误状态 -->
+  <view class="empty-state" wx:elif="{{error}}">
+    <text class="empty-state-icon">✗</text>
+    <text class="empty-state-text">加载失败，请稍后重试</text>
+    <button class="btn btn-sm btn-ghost" style="margin-top: 24rpx;" bindtap="onRetryTap">重新加载</button>
+  </view>
+
+  <!-- 作答区域 -->
+  <view class="quiz-area" wx:elif="{{questions.length > 0}}">
+    <!-- 进度条 -->
+    <view class="progress-bar-wrap">
+      <view class="progress-info flex-row align-center justify-between">
+        <text class="progress-text">第 {{currentIndex + 1}}/{{questions.length}} 题</text>
+        <view class="tag tag-dark">{{questions[currentIndex].type === 'choice' ? '选择题' : questions[currentIndex].type === 'judge' ? '判断题' : questions[currentIndex].type === 'fill' ? '填空题' : '简答题'}}</view>
+      </view>
+      <view class="progress-track">
+        <view class="progress-fill" style="width: {{(currentIndex + 1) / questions.length * 100}}%"></view>
+      </view>
+    </view>
+
+    <!-- 题目内容 -->
+    <view class="question-area card">
+      <view class="question-num flex-row align-center">
+        <text class="num-badge">{{currentIndex + 1}}</text>
+      </view>
+      <text class="question-stem serif-text">{{questions[currentIndex].content}}</text>
+
+      <!-- 选择题选项 -->
+      <view class="options-list" wx:if="{{questions[currentIndex].type === 'choice'}}">
+        <view
+          class="option-card {{answers[questions[currentIndex].id] === item.key ? 'option-selected' : ''}}"
+          wx:for="{{questions[currentIndex].options}}" wx:key="key"
+          bindtap="onOptionTap"
+          data-qid="{{questions[currentIndex].id}}"
+          data-value="{{item.key}}"
+        >
+          <view class="option-indicator flex-row align-center justify-center">
+            <view class="option-dot {{answers[questions[currentIndex].id] === item.key ? 'dot-active' : ''}}"></view>
+          </view>
+          <text class="option-text">{{item.key}}. {{item.text}}</text>
+        </view>
+      </view>
+
+      <!-- 判断题 -->
+      <view class="judge-options flex-row justify-between" wx:if="{{questions[currentIndex].type === 'judge'}}">
+        <view
+          class="judge-btn {{answers[questions[currentIndex].id] === true ? 'judge-active' : ''}}"
+          bindtap="onOptionTap"
+          data-qid="{{questions[currentIndex].id}}"
+          data-value="{{true}}"
+        >
+          <text class="judge-icon">⊙</text>
+          <text>正确</text>
+        </view>
+        <view
+          class="judge-btn {{answers[questions[currentIndex].id] === false ? 'judge-wrong' : ''}}"
+          bindtap="onOptionTap"
+          data-qid="{{questions[currentIndex].id}}"
+          data-value="{{false}}"
+        >
+          <text class="judge-icon">✗</text>
+          <text>错误</text>
+        </view>
+      </view>
+
+      <!-- 填空/简答 -->
+      <view class="input-area" wx:if="{{questions[currentIndex].type === 'fill' || questions[currentIndex].type === 'short'}}">
+        <textarea
+          class="answer-input"
+          placeholder="请输入你的答案..."
+          placeholder-class="ph-style"
+          value="{{answers[questions[currentIndex].id]}}"
+          bindinput="onInputAnswer"
+          data-qid="{{questions[currentIndex].id}}"
+          auto-height
+          maxlength="2000"
+        />
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部导航栏 -->
+  <view class="bottom-bar flex-row align-center justify-between" wx:if="{{questions.length > 0}}">
+    <button class="btn btn-secondary btn-sm" disabled="{{currentIndex === 0}}" bindtap="onPrev">上一题</button>
+    <button class="btn btn-primary btn-sm" wx:if="{{currentIndex < questions.length - 1}}" bindtap="onNext">下一题</button>
+    <button class="btn btn-primary btn-sm" wx:else disabled="{{submitting}}" bindtap="onSubmit">
+      {{submitting ? '提交中...' : '提交答卷'}}
+    </button>
+  </view>
+</view>

@@ -1,0 +1,132 @@
+<view class="container">
+  <view class="wave-bg"></view>
+
+  <!-- 顶部模式切换与提示 -->
+  <view class="header-nav flex-row align-center justify-between">
+    <view class="title-area flex-col">
+      <text class="page-title serif-text">伴学 · 智能导师</text>
+      <text class="page-sub">协同启发，穷物致知</text>
+    </view>
+
+    <!-- 模式切换器 - 分段控制器 -->
+    <view class="mode-toggle flex-row align-center" bindtap="toggleAgentMode">
+      <view
+        class="mode-btn {{agentMode === 'tutor' ? 'active' : ''}}"
+        data-mode="tutor"
+      >Tutor模式</view>
+      <view
+        class="mode-btn {{agentMode === 'rag' ? 'active' : ''}}"
+        data-mode="rag"
+      >RAG课件</view>
+    </view>
+  </view>
+
+  <!-- 对话内容展示区 -->
+  <scroll-view
+    scroll-y
+    class="chat-scroll"
+    scroll-into-view="{{lastMessageId}}"
+    scroll-with-animation
+  >
+    <view class="msg-list">
+
+      <!-- 空状态 - 建议问题 -->
+      <view class="empty-suggestions" wx:if="{{!messages.length}}">
+        <view class="suggestion-header">
+          <view class="suggestion-icon">◎</view>
+          <text class="suggestion-title serif-text">你好，我是 Alina</text>
+          <text class="suggestion-desc">你的专属学习规划师，试试这些问题开始探索吧</text>
+        </view>
+        <view class="suggestion-list">
+          <view class="suggestion-item" bindtap="onSuggestTap" data-question="数据结构中二叉树有哪些常见遍历方式？">
+            <text class="suggestion-num serif-text">壹</text>
+            <text class="suggestion-text">数据结构中二叉树有哪些常见遍历方式？</text>
+          </view>
+          <view class="suggestion-item" bindtap="onSuggestTap" data-question="如何理解动态规划的核心思想？">
+            <text class="suggestion-num serif-text">贰</text>
+            <text class="suggestion-text">如何理解动态规划的核心思想？</text>
+          </view>
+          <view class="suggestion-item" bindtap="onSuggestTap" data-question="图的深度优先搜索和广度优先搜索有什么区别？">
+            <text class="suggestion-num serif-text">叁</text>
+            <text class="suggestion-text">图的深度优先搜索和广度优先搜索有什么区别？</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 智能助教欢迎语（有消息时显示） -->
+      <view class="msg-item agent flex-row align-start" id="msg-welcome" wx:if="{{messages.length}}">
+        <view class="agent-avatar avatar-indigo flex-row align-center justify-center">◎</view>
+        <view class="msg-bubble-box flex-col">
+          <text class="agent-name">Alina [主规划师]</text>
+          <view class="msg-bubble agent-style">
+            <text>同学你好！我是你的主规划师 Alina。你可以随时向我提问关于《数据结构》等课程的内容。切换到 RAG 课件模式，还可以针对你上传的专属文档进行深度的检索问答哦。</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 动态渲染消息 -->
+      <view
+        class="msg-item {{item.role === 'user' ? 'user' : 'agent'}} flex-row {{item.role === 'user' ? 'justify-end' : 'align-start'}}"
+        wx:for="{{messages}}"
+        wx:key="id"
+        id="msg-{{item.id}}"
+      >
+        <!-- 机器人的头像 -->
+        <view class="agent-avatar {{item.senderName === 'CodeNinja' ? 'avatar-seal' : item.senderName === 'Prof.X' ? 'avatar-bamboo' : item.senderName === 'DataBot' ? 'avatar-dark' : 'avatar-indigo'}} flex-row align-center justify-center" wx:if="{{item.role !== 'user'}}">
+          {{item.senderAvatar || '◎'}}
+        </view>
+
+        <view class="msg-bubble-box flex-col {{item.role === 'user' ? 'align-end' : ''}}">
+          <text class="agent-name" wx:if="{{item.role !== 'user'}}">{{item.senderName || '智能导师'}}</text>
+          <view class="msg-bubble {{item.role === 'user' ? 'user-style' : 'agent-style'}}">
+            <text class="selectable-text" selectable>{{item.content}}</text>
+            <!-- 带有引用的RAG标记 -->
+            <view class="reference-box" wx:if="{{item.references && item.references.length > 0}}">
+              <text class="ref-title">知识库引用来源</text>
+              <text class="ref-doc" wx:for="{{item.references}}" wx:for-item="ref" wx:key="*this">· {{ref.docName || ref}}</text>
+            </view>
+          </view>
+        </view>
+
+        <!-- 学生的头像 -->
+        <view class="user-avatar flex-row align-center justify-center" wx:if="{{item.role === 'user'}}">⊙</view>
+      </view>
+
+      <!-- 智能体思考状态提示 -->
+      <view class="msg-item agent flex-row align-start" wx:if="{{thinking}}" id="msg-thinking">
+        <view class="agent-avatar avatar-indigo flex-row align-center justify-center thinking-pulse">◎</view>
+        <view class="msg-bubble-box flex-col">
+          <text class="agent-name">◎ {{thinkingAgent || '智能助教'}} 正在整理思路...</text>
+          <view class="msg-bubble agent-style thinking-bubble">
+            <view class="dot-loader">
+              <view class="dot"></view>
+              <view class="dot"></view>
+              <view class="dot"></view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+    </view>
+  </scroll-view>
+
+  <!-- 底部输入与操作区域 -->
+  <view class="input-bar flex-row align-center">
+    <!-- 文件上传快捷向量化入口（RAG模式高亮） -->
+    <view class="upload-btn flex-row align-center justify-center {{agentMode === 'rag' ? 'rag-highlight' : ''}}" bindtap="uploadMessageFile">
+      <text class="upload-icon">+</text>
+    </view>
+
+    <input
+      class="chat-input"
+      placeholder="{{agentMode === 'rag' ? '在专属课件中检索...' : '提问关于数据结构与算法...'}}"
+      placeholder-class="ph-style"
+      value="{{inputValue}}"
+      bindinput="onInput"
+      confirm-type="send"
+      bindconfirm="sendMessage"
+    />
+
+    <button class="send-btn serif-text" bindtap="sendMessage" disabled="{{thinking || !inputValue.length}}">发送</button>
+  </view>
+</view>

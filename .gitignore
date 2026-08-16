@@ -1,0 +1,130 @@
+# ============================================================
+# 格至多智能体协同教育系统 .gitignore（开源发布版）
+# 原则：密钥 / 生产数据 / 数据库备份 / 大体积课件 / 运行时产物一律不入库
+# ============================================================
+
+# ---------- 敏感配置与密钥 ----------
+# 环境变量（含全部真实 API Key、数据库密码、SMS 密钥）
+.env
+.env.local
+.env.production
+.env.*.local
+*.env.local
+*.env.production
+!.env.example
+!**/.env.example
+*.env.backup
+*.env.bak
+# 团队内部配置文档（含真实密钥，仅私发，绝不提交）
+系统配置详细信息.md
+# 安全密钥与证书
+*.pem
+*.rsa
+*.key
+*.p12
+*.pfx
+
+# ---------- 生产数据与数据库备份（严禁开源） ----------
+# 含生产库 SQL 备份、Gitea 数据备份 tar.gz、RAGFlow 知识库导出（约 215MB）
+数据库资料/
+# 本地测试数据库
+*.db
+*.sqlite
+*.sqlite3
+
+# ---------- 大体积课件资源 ----------
+# 课程 PDF/PPT 课件（数百 MB，建议通过 Release / 网盘分发）
+frontend/courses/
+# frontend 根目录下的冗余课件副本
+frontend/AI_technology/
+frontend/Computer_ Organization/
+frontend/Database _Technology/
+frontend/computer_programming/
+frontend/data_structure/
+
+# ---------- 运行时生成的静态资源（保留目录结构） ----------
+# 演示头像（由外部数据包注入）、AI 生成图、演示仓库压缩包（种子脚本运行时生成）
+backend/app/static/avatars/*
+backend/app/static/generated/*
+backend/app/static/demo_repositories/*
+!backend/app/static/avatars/.gitkeep
+!backend/app/static/generated/.gitkeep
+!backend/app/static/demo_repositories/.gitkeep
+
+# ---------- 微信小程序 ----------
+# 开发者工具本地私有配置（含本机私有设置）
+微信小程序项目文件/project.private.config.json
+# 云函数依赖
+微信小程序项目文件/cloud/**/node_modules/
+
+# ---------- RAGFlow / Gitea 自托管服务 ----------
+ragflow/docker/.env
+ragflow/docker/ragflow-logs/
+# Gitea 服务器安装目录（含 SSH/JWT 私钥、bare 仓库、服务数据）
+softwareGitea/
+
+# ---------- Python ----------
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+venv/
+.venv/
+env/
+*.egg-info/
+*.whl
+.pip-cache/
+
+# ---------- Node / 前端 ----------
+node_modules/
+**/node_modules/
+dist/
+build/
+# 锁文件（仅保留 package.json）
+pnpm-lock.yaml
+pnpm-workspace.yaml
+package-lock.json
+
+# ---------- 日志与临时产物 ----------
+logs/
+**/logs/
+*.log
+*.log.*
+*.out
+*.err
+codex-*.log
+codex-*.out
+codex-*.err
+*.err.log
+*.out.log
+*.stderr.log
+*.stdout.log
+# 本地部署打包产物
+deploy/*.tar.gz
+deploy/*.zip
+deploy/**/*.tar.gz
+deploy/**/*.zip
+# QA 截图与临时验证输出
+artifacts/
+frontend/tests/render_*
+# 编辑器交换文件
+*.swp
+*.swo
+*~
+
+# ---------- 操作系统 ----------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---------- IDE / 工具状态 ----------
+.vscode/
+.idea/
+.claude/
+.codex/
+.trae/
+.qoder/
+.superpowers/
+docs/superpowers/

@@ -1,0 +1,395 @@
+/* ============================================================
+   伴学 · 智能导师 — 书院升级风格
+   ============================================================ */
+
+/* ---------- 页面容器 ---------- */
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 100rpx 32rpx 180rpx 32rpx;
+  box-sizing: border-box;
+}
+
+/* ---------- 顶部导航 ---------- */
+.header-nav {
+  margin-bottom: var(--space-3);
+  flex-shrink: 0;
+}
+
+.title-area {
+  flex: 1;
+}
+
+.page-title {
+  font-size: var(--font-page-title, 48rpx);
+  letter-spacing: 4rpx;
+  color: var(--color-ink);
+}
+
+.page-sub {
+  font-size: var(--font-micro, 20rpx);
+  color: var(--color-ash);
+  margin-top: 4rpx;
+}
+
+/* ---------- 模式切换器 - 分段控制器 ---------- */
+.mode-toggle {
+  background-color: var(--color-border-light);
+  border-radius: var(--radius-pill, 999rpx);
+  padding: 4rpx;
+  border: 1rpx solid var(--color-border);
+}
+
+.mode-btn {
+  font-size: var(--font-micro, 20rpx);
+  color: var(--color-ash-light);
+  padding: 12rpx 24rpx;
+  border-radius: var(--radius-pill, 999rpx);
+  transition: all 0.3s ease;
+  font-weight: 500;
+  position: relative;
+  z-index: 1;
+}
+
+.mode-btn.active {
+  background-color: var(--color-seal);
+  color: #fff;
+  box-shadow: 0 4rpx 12rpx rgba(139, 37, 32, 0.2);
+}
+
+/* ---------- 聊天滚动区 ---------- */
+.chat-scroll {
+  flex: 1;
+  overflow: hidden;
+  margin-bottom: var(--space-3);
+  background-color: var(--color-card);
+  border-radius: var(--radius-xl, 36rpx);
+  border: 1rpx solid var(--color-border-light);
+  box-shadow: inset 0 4rpx 20rpx rgba(40, 35, 31, 0.03);
+}
+
+.msg-list {
+  padding: var(--space-4) var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-height: 100%;
+}
+
+/* ---------- 空状态 - 建议问题 ---------- */
+.empty-suggestions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-5) var(--space-2);
+  min-height: 60vh;
+}
+
+.suggestion-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: var(--space-5);
+}
+
+.suggestion-icon {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background-color: var(--color-indigo-soft);
+  color: var(--color-indigo);
+  font-size: 44rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-3);
+  box-shadow: var(--shadow-card);
+}
+
+.suggestion-title {
+  font-size: var(--font-section-title, 34rpx);
+  color: var(--color-ink);
+  margin-bottom: var(--space-1);
+}
+
+.suggestion-desc {
+  font-size: var(--font-caption, 24rpx);
+  color: var(--color-ash-light);
+  text-align: center;
+}
+
+.suggestion-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.suggestion-item {
+  display: flex;
+  align-items: center;
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-card);
+  border: 1rpx solid var(--color-border-light);
+  border-radius: var(--radius-lg, 28rpx);
+  box-shadow: var(--shadow-card);
+  transition: all 0.2s ease;
+}
+
+.suggestion-item:active {
+  background-color: var(--color-seal-bg);
+  border-color: var(--color-seal-soft);
+}
+
+.suggestion-num {
+  font-size: var(--font-caption, 24rpx);
+  color: var(--color-seal);
+  font-weight: 600;
+  margin-right: var(--space-3);
+  min-width: 36rpx;
+}
+
+.suggestion-text {
+  font-size: var(--font-caption, 24rpx);
+  color: var(--color-ink);
+  line-height: 1.7;
+}
+
+/* ---------- 消息条目 ---------- */
+.msg-item {
+  width: 100%;
+  display: flex;
+}
+
+.msg-item.user {
+  justify-content: flex-end;
+}
+
+/* ---------- 头像系统 ---------- */
+.agent-avatar,
+.user-avatar {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 50%;
+  font-size: 32rpx;
+  flex-shrink: 0;
+  border: 1rpx solid var(--color-border-light);
+}
+
+.agent-avatar {
+  margin-right: var(--space-2);
+}
+
+.user-avatar {
+  margin-left: var(--space-2);
+  background-color: var(--color-seal-soft);
+  color: var(--color-seal);
+}
+
+/* 头像色彩变体 */
+.avatar-indigo {
+  background-color: var(--color-indigo-soft);
+  color: var(--color-indigo);
+}
+
+.avatar-seal {
+  background-color: var(--color-seal-soft);
+  color: var(--color-seal);
+}
+
+.avatar-bamboo {
+  background-color: var(--color-bamboo-soft);
+  color: var(--color-bamboo);
+}
+
+.avatar-dark {
+  background-color: var(--color-dark-soft);
+  color: var(--color-ink);
+}
+
+/* ---------- 消息气泡 ---------- */
+.msg-bubble-box {
+  max-width: 72%;
+}
+
+.agent-name {
+  font-size: var(--font-micro, 20rpx);
+  color: var(--color-ash);
+  margin-bottom: var(--space-1);
+  margin-left: var(--space-1);
+}
+
+.msg-bubble {
+  padding: 24rpx 28rpx;
+  border-radius: var(--radius-lg, 28rpx);
+  font-size: var(--font-body, 28rpx);
+  line-height: 1.7;
+  word-break: break-all;
+}
+
+/* AI 气泡 - 左对齐，卡片底色 */
+.msg-bubble.agent-style {
+  background-color: var(--color-card);
+  color: var(--color-ink);
+  border: 1rpx solid var(--color-border-light);
+  border-top-left-radius: var(--radius-sm, 12rpx);
+  box-shadow: var(--shadow-card);
+}
+
+/* 用户气泡 - 右对齐，朱砂底色 */
+.msg-bubble.user-style {
+  background-color: var(--color-seal-soft);
+  color: var(--color-seal);
+  border: 1rpx solid rgba(139, 37, 32, 0.1);
+  border-top-right-radius: var(--radius-sm, 12rpx);
+}
+
+.selectable-text {
+  font-family: inherit;
+}
+
+/* ---------- 引用文档卡片 - 靛蓝强调 ---------- */
+.reference-box {
+  margin-top: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  background-color: var(--color-indigo-soft);
+  border-left: 4rpx solid var(--color-indigo);
+  border-radius: var(--radius-sm, 12rpx);
+}
+
+.ref-title {
+  font-size: var(--font-micro, 20rpx);
+  color: var(--color-indigo);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 8rpx;
+  letter-spacing: 1rpx;
+}
+
+.ref-doc {
+  font-size: var(--font-micro, 20rpx);
+  color: var(--color-indigo);
+  opacity: 0.8;
+  display: block;
+  line-height: 1.7;
+  padding: 2rpx 0;
+}
+
+/* ---------- 思考状态 ---------- */
+.thinking-pulse {
+  animation: thinkingPulse 2s infinite ease-in-out;
+}
+
+@keyframes thinkingPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(0.92);
+  }
+}
+
+.thinking-bubble {
+  padding: var(--space-3) var(--space-5);
+}
+
+.dot-loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  height: 24rpx;
+}
+
+.dot-loader .dot {
+  width: 10rpx;
+  height: 10rpx;
+  background-color: var(--color-seal);
+  border-radius: 50%;
+  animation: dotPulse 1.4s infinite ease-in-out both;
+}
+
+.dot-loader .dot:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.dot-loader .dot:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+@keyframes dotPulse {
+  0%, 80%, 100% {
+    transform: scale(0);
+    opacity: 0.3;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ---------- 底部输入栏 ---------- */
+.input-bar {
+  flex-shrink: 0;
+  background-color: var(--color-card);
+  border-radius: var(--radius-pill, 999rpx);
+  padding: 10rpx 12rpx 10rpx 20rpx;
+  border: 1rpx solid var(--color-border-light);
+  box-shadow: var(--shadow-card-lg);
+  gap: var(--space-1);
+}
+
+.upload-btn {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 1rpx solid var(--color-border);
+  font-size: 30rpx;
+  color: var(--color-ash-light);
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.upload-btn.rag-highlight {
+  background-color: var(--color-seal-bg);
+  border-color: var(--color-seal-soft);
+  color: var(--color-seal);
+}
+
+.chat-input {
+  flex: 1;
+  height: 60rpx;
+  font-size: var(--font-caption, 24rpx);
+  color: var(--color-ink);
+  padding: 0 var(--space-2);
+}
+
+.ph-style {
+  color: var(--color-ash-light);
+}
+
+.send-btn {
+  background-color: var(--color-seal);
+  color: #fff;
+  border-radius: var(--radius-pill, 999rpx);
+  font-size: var(--font-caption, 24rpx);
+  padding: 0 28rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  border: none;
+  font-weight: 600;
+  letter-spacing: 2rpx;
+  flex-shrink: 0;
+  box-shadow: 0 4rpx 12rpx rgba(139, 37, 32, 0.18);
+}
+
+.send-btn[disabled] {
+  background-color: var(--color-border) !important;
+  color: rgba(255, 255, 255, 0.6) !important;
+  box-shadow: none !important;
+}

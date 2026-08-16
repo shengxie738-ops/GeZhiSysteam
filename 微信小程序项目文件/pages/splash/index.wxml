@@ -1,0 +1,23 @@
+<view class="container">
+  <view class="wave-bg"></view>
+
+  <view class="content">
+    <image class="logo" src="/logo/logo1.png" mode="aspectFit"></image>
+    
+    <view class="hero-text">
+      <text class="title serif-text">格至教育</text>
+    </view>
+    
+    <view class="bamboo-divider"><view class="bamboo-divider-dot"></view></view>
+    
+    <view class="desc-box flex-row align-center justify-center">
+      <text class="desc-line"></text>
+      <text class="desc">穷 物 致 知  ◆  至 善 致 远</text>
+      <text class="desc-line"></text>
+    </view>
+  </view>
+
+  <view class="action-area">
+    <button class="enter-btn serif-text" bindtap="goToLogin">进入学堂</button>
+  </view>
+</view>
